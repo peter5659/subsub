@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['testvenv.eba-y2raezpi.ap-northeast-2.elasticbeanstalk.com', '1
 # Application definition
 
 INSTALLED_APPS = [
+    'user.apps.UserConfig',
     'main.apps.MainConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'subserve.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['subserve/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,10 +121,10 @@ USE_TZ = True
 
 
 STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR,'hackathon','static'),
-    # os.path.join(BASE_DIR,'home','static'),
-    # os.path.join(BASE_DIR,'hackathon','static','media')
+    os.path.join(BASE_DIR, 'index', 'static')
 ]
+
+
 STATIC_URL = '/static/'
 
 # MEDIA_URL = '/media/' 
