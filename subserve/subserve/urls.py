@@ -10,3 +10,4 @@ urlpatterns = [
     # path('user/', include('user.urls')),
     path('detail/', include ('detail.urls'))
 ]
+
