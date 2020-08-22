@@ -25,13 +25,12 @@ SECRET_KEY = '198sr!eq&y!g=_78vv_#ea8g5h2d2b&fk%iv7*bv=sxgf*3h5_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['venv.eba-hda3mggu.ap-northeast-2.elasticbeanstalk.com', '127.0.0.1']
+ALLOWED_HOSTS = ['venv.eba-e7nwkxem.ap-northeast-2.elasticbeanstalk.com', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'detail.apps.DetailConfig',
     'main.apps.MainConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -119,10 +118,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'main', 'static')
+    # os.path.join(BASE_DIR,'hackathon','static'),
+    # os.path.join(BASE_DIR,'home','static'),
+    # os.path.join(BASE_DIR,'hackathon','static','media')
 ]
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 STATIC_URL = '/static/'
+
+# MEDIA_URL = '/media/' 
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
