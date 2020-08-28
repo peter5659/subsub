@@ -14,14 +14,42 @@
     <!-- navbar -->
     {% include 'navbar.html' %}
     <!-- navbar 종료 -->
-
+    <div class="row">
     <!-- sidebar -->
     {% include 'sidebar.html' %}
     <!-- sidebar 종료 -->
 
-    <!-- 회원가입 화면 -->
+    <!-- 로그인 화면 -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <div class="">
+            <h2 class="">LOGIN</h2>
 
-    <!-- 회원가입 화면 종료 -->
+            {% if error %}
+            <h3>{{error}}</h3>
+            <br>
+            <br>
+            {% endif %}
+
+            <form method="POST" action="{% url 'signin' %}">
+                {% csrf_token %}
+                <div class="">
+                    <div class="">
+                        <input class="" name="username" type="text" placeholder="아이디">
+                        <br>
+                        <input class="" name="password" type="password" placeholder="  비밀번호">
+                    </div> 
+                    <div class="">
+                        <input class="" type="submit" value="로그인">
+                        <button class="" type="button"> <a href="{% url 'signup' %}"> 회원가입</a></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    </div>
+
+
+    <!-- 로그인 화면 종료 -->
 
     <!-- footer -->
     {% include 'footer.html' %}

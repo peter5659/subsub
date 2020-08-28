@@ -1,10 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
-from unixtimestampfield.fields import UnixTimeStampField
+##from unixtimestampfield.fields import UnixTimeStampField
 #from django.contrib.auth.hashers import make_password      hashed를 위해 import
 
 # Create your models here.
-class User(models.Model):
+"""class User(models.Model):
     id=models.IntegerField(primary_key=True)
     pw=models.CharField(max_length=45)  #hashed처리?
     email=models.CharField(max_length=45)  #EmailField 사용?
@@ -115,3 +115,5 @@ class Wishlist(models.Model):
     id=models.IntegerField(Reviews, on_delete=models.CASCADE, primary_key = True)
     store_id=models.ForeignKey(Store, on_delete=models.CASCADE)
     menu_id=models.ForeignKey(Menu, on_delete=models.CASCADE)
+
+"""

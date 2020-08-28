@@ -14,14 +14,43 @@
     <!-- navbar -->
     {% include 'navbar.html' %}
     <!-- navbar 종료 -->
-
+    <div class="row">
     <!-- sidebar -->
     {% include 'sidebar.html' %}
     <!-- sidebar 종료 -->
 
-    <!-- 회원가입 화면 -->
+    <!-- 회원정보 화면 -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <div>
+            <h2>'{{user.name}}'님의 회원 정보 </h2>
+            <br>
+            <hr>
+            <h3>이름 {{user.name}}</h3>
+            <hr>
+            <h3>아이디 {{user.id}}</h3>
+            <hr>
+            <h3>성별 {{user.sex}}</h3>
+            <hr>
+            <h3>휴대폰 번호 {{user.phone}}</h3>
+            <hr>
+            <h3>이메일 주소 {{user.email}}</h3>
+            <hr>
+            <h3>주소 ???</h3>
+            <hr>
+            <h3>생년월일 {{user.birthday}}</h3>
+            <hr>
+        </div>
+        <div class="">
+            <button class="" type="button" ><a href="{% url 'editprofile' %}">회원정보 수정</a>
+            <button class="" type="button"> <a href="{% url 'confirmpassword' %}"> 회원 탈퇴</a></button>
+        </div>
+    </main>
+    </div>
 
-    <!-- 회원가입 화면 종료 -->
+   
+
+
+    <!-- 회원정보 화면 종료 -->
 
     <!-- footer -->
     {% include 'footer.html' %}
