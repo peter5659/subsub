@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['testvenv.eba-y2raezpi.ap-northeast-2.elasticbeanstalk.com', '1
 # Application definition
 
 INSTALLED_APPS = [
+    'detail.apps.DetailConfig',
     'user.apps.UserConfig',
     'main.apps.MainConfig',
     'django.contrib.admin',
@@ -121,9 +122,11 @@ USE_TZ = True
 
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'index', 'static')
+    os.path.join(BASE_DIR, 'main', 'static'),
+
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
 

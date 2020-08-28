@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <title>::::SUBSERVE::::</title>
+</head>
+<body>
+    <!-- navbar -->
+    {% include 'navbar.html' %}
+    <!-- navbar 종료 -->
+
+    <!-- 디테일 화면 -->
+    <div>
+        <div class="top-container grid-2">
+            <div>
+                <img src="" alt="">
+            </div>
+            <div>
+                <button>구독</button>
+            </div>
+        </div>
+        <div class="introduction-container">
+            <h2>매장 소개</h2>
+            <div>
+                <ul>
+                    <li class="desc-inner">
+                        <p class="desc-inner-text">매장 관련 내용</p>
+                    </li>
+                    <li class="desc-inner">
+                        <p class="desc-inner-text">휴무일</p>
+                    </li>
+                    <li class="desc-inner">
+                        <p class="desc-inner-text">사장님 말씀 등</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 메뉴들의 상세정보를 담는 컨테이너 -->
+        <div class="menu-container">
+            <h2>구독 가능한 메뉴</h2>
+            <div class="menu-card">
+                <img src="" alt="">
+                <h3>메뉴 이름</h3>
+                <div>메뉴 설명</div>
+                <p>구독 정보</p>
+                <p>가격</p>
+            </div>
+            <div class="menu-card">
+                <img src="" alt="">
+                <h3>메뉴 이름</h3>
+                <div>메뉴 설명</div>
+                <p>구독 정보</p>
+                <p>가격</p>
+            </div>
+            <div class="menu-card">
+                <img src="" alt="">
+                <h3>메뉴 이름</h3>
+                <div>메뉴 설명</div>
+                <p>구독 정보</p>
+                <p>가격</p>
+            </div>
+        </div>
+
+        <div id="map" style="width:100%;height:350px;"></div>
+
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ key }}&libraries=services"></script>
+        <script>
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = {
+                    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                    level: 3 // 지도의 확대 레벨
+                };  
+
+            // 지도를 생성합니다    
+            var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+            // 주소-좌표 변환 객체를 생성합니다
+            var geocoder = new kakao.maps.services.Geocoder();
+
+            // 주소로 좌표를 검색합니다
+            geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+
+                // 정상적으로 검색이 완료됐으면 
+                if (status === kakao.maps.services.Status.OK) {
+
+                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                    // 결과값으로 받은 위치를 마커로 표시합니다
+                    var marker = new kakao.maps.Marker({
+                        map: map,
+                        position: coords
+                    });
+
+                    // 인포윈도우로 장소에 대한 설명을 표시합니다
+                    var infowindow = new kakao.maps.InfoWindow({
+                        content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+                    });
+                    infowindow.open(map, marker);
+
+                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                    map.setCenter(coords);
+                } 
+            });    
+        </script>
+        </div>
+    </div>
+
+    <!-- 디테일 화면 종료 -->
+
+    <!-- footer -->
+    {% include 'footer.html' %}
+    <!-- footer 종료 -->
+</body>
+</html>
