@@ -1,12 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
-##from unixtimestampfield.fields import UnixTimeStampField
-#from django.contrib.auth.hashers import make_password      hashed를 위해 import
+'''
+from unixtimestampfield.fields import UnixTimeStampField
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from django.contrib.auth.hashers import make_password, is_password_usable
 
 # Create your models here.
-"""class User(models.Model):
+class User(models.Model):
     id=models.IntegerField(primary_key=True)
-    pw=models.CharField(max_length=45)  #hashed처리?
+    pw=models.CharField(max_length=45)
     email=models.CharField(max_length=45)  #EmailField 사용?
     phone=models.CharField(max_length=45, null=True)
     marketing_email=models.BooleanField()   
@@ -18,11 +21,16 @@ from django.contrib.auth.models import User
     loaclity=models.IntegerField()
     recent_search_keywords=models.CharField(max_length=45, null=True)
     recent_viewed=models.CharField(max_length=45, null=True)
-    profile=models.CharField(max_length=45)     #path추가
+    profile=models.CharField(max_length=45)
     birthday=models.DateTimeField(null=True)
     name=models.CharField(max_length=45, null=True)
     sex=models.BooleanField()
     certified=models.BooleanField()
+
+@receiver(pre_save, sender=User)
+def password_hashing(instance, **kwargs):
+    if not is_password_usable(instance.password):
+        instance.password = make_password(instance.password)
 
 
 class Store(models.Model):
@@ -30,7 +38,7 @@ class Store(models.Model):
     longitude=models.DecimalField(max_digits=30, decimal_places=20)
     latitude=models.DecimalField(max_digits=30, decimal_places=20)
     address=models.CharField(max_length=45)
-    photo=models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)        #path
+    photo=models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     subscribers=models.IntegerField()
     rank=models.IntegerField()
     is_premium=models.BooleanField()
@@ -53,7 +61,7 @@ class Manager(models.Model):
     password=models.CharField(max_length=45)       #hashed
     phone=models.CharField(max_length=45)
     alarm_sms=models.BooleanField()
-    alarm_push=models.NullBooleanField()
+    alarm_push=models.BooleanField(null=True)
 
 
 class Menu(models.Model):
@@ -62,7 +70,6 @@ class Menu(models.Model):
     description=models.CharField(max_length=45)
     price=models.IntegerField()
     photo=models.CharField(max_length=45, null=True)
-    #photo에 char, path 처리
     allergic=models.CharField(max_length=45)
     subscribers=models.IntegerField()
     cycle=models.IntegerField()
@@ -77,12 +84,12 @@ class Reviews(models.Model):
     store_id=models.ForeignKey(Store, on_delete=models.CASCADE)
     menu_id=models.ForeignKey(Menu, on_delete=models.CASCADE)
     content=models.TextField()
-    photo=models.CharField(max_length=45, null=True)  #photo에 char?
+    photo=models.CharField(max_length=45, null=True)
     rank=models.IntegerField()
 
 class Subscribes(models.Model):
     id = models.IntegerField(primary_key = True)
-    user_id=models.ForeignKey(User, on_delete=models.CASCADE)  #관계정의필드..
+    user_id=models.ForeignKey(User, on_delete=models.CASCADE)
     store_id=models.ForeignKey(Store, on_delete=models.CASCADE)
     menu_id=models.ForeignKey(Menu, on_delete=models.CASCADE)
     start_date=UnixTimeStampField(auto_created=True)   #timestamp...
@@ -112,8 +119,8 @@ class Notice(models.Model):
     locality=models.IntegerField()
 
 class Wishlist(models.Model):
-    id=models.IntegerField(Reviews, on_delete=models.CASCADE, primary_key = True)
+    id=models.IntegerField(Reviews, primary_key = True)
     store_id=models.ForeignKey(Store, on_delete=models.CASCADE)
     menu_id=models.ForeignKey(Menu, on_delete=models.CASCADE)
-
-"""
+    
+'''
