@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['testvenv.eba-y2raezpi.ap-northeast-2.elasticbeanstalk.com', '1
 
 INSTALLED_APPS = [
     'detail.apps.DetailConfig',
-    'user.apps.UserConfig',
+    'customer.apps.CustomerConfig',
     'main.apps.MainConfig',
     'django.contrib.admin',
     'django.contrib.auth',
