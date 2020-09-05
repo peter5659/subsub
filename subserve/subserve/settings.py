@@ -31,6 +31,8 @@ ALLOWED_HOSTS = ['testvenv.eba-y2raezpi.ap-northeast-2.elasticbeanstalk.com', '1
 # Application definition
 
 INSTALLED_APPS = [
+    'menu.apps.MenuConfig',
+    'store.apps.StoreConfig',
     'detail.apps.DetailConfig',
     'customer.apps.CustomerConfig',
     'main.apps.MainConfig',

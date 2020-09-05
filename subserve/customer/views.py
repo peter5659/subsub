@@ -8,7 +8,7 @@ def signUp(request) :
         if request.POST['password']==request.POST['passwordCheck']:
             name = request.POST['name']
             username = request.POST['username']
-            if User.objects.get(username= username) is not None:
+            if Customer.objects.get(username= username) is not None:
                 return redirect("/")
             password = request.POST['password']
             passwordCheck = request.POST['passwordCheck']
@@ -34,10 +34,10 @@ def signIn(request) :
     if request.method=="POST":
         username = request.POST["username"]
         password = request.POST["password"]
-        user = auth.authenticate(request, username = username, password = password)
-        if user is not None:
-            auth.login(request,user)
-            print(user.username)
+        customer = auth.authenticate(request, username = username, password = password)
+        if customer is not None:
+            auth.login(request,customer)
+            print(customer.username)
             return redirect("/")
         else:
             return render(request, 'signin.html', {'error': "There is No user"})
