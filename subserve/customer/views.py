@@ -2,32 +2,31 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Customer
+from django.http import HttpResponse
 # Create your views here.
 def signUp(request) :
     if request.method=="POST":
         if request.POST['password']==request.POST['passwordCheck']:
-            name = request.POST['name']
-            username = request.POST['username']
-            if Customer.objects.get(username= username) is not None:
-                return redirect("/")
-            password = request.POST['password']
-            passwordCheck = request.POST['passwordCheck']
-            email = request.POST['email']
-            if request.POST['sex']=="male":
-                sex = 1
-            else:
-                sex = 0
-            address = request.POST['address']
-            birthday = request.POST['birthday']
-            phone = request.POST['phone']
-            user = User.objects.create_user(username = username, password = password, email = email)
-            customer = Customer.objects.create(user=user, name= name, address = address, birthday = birthday, phone = phone, sex = sex)
-            customer.save()
-            print(customer.address)
-            print(customer.sex)
-            return redirect("/")
+
+            try:
+                user = User.objects.get(username = request.POST['username'])
+                return render(request, 'signup.html',{'error':"Username has already been taken"})
+            except User.DoesNotExist:
+                user = User.objects.create_user(username = request.POST['username'], password = request.POST['password'], email = request.POST['email'])
+                name = request.POST['name']
+                if request.POST['sex']=="male":
+                    sex = 1
+                else:
+                    sex = 0
+                address = request.POST['address']
+                birthday = request.POST['birthday']
+                phone = request.POST['phone']
+                customer = Customer(name= name, address = address, birthday = birthday, phone = phone, sex = sex, user= user)
+                customer.save()
+                auth.login(request, user)
+                return HttpResponse("Signned up!!")
         else:
-            return redirect("/")
+            return render(request, 'signup.html', {'error': "Password doesn't match"})
     else:
         return render(request, 'signup.html')
 def signIn(request) :
