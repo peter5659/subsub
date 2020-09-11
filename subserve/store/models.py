@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib import admin
+
 
 # Create your models here.
 class Store(models.Model):
@@ -6,8 +8,7 @@ class Store(models.Model):
     username = models.CharField(max_length=45, null = True)
     longitude=models.DecimalField(max_digits=30, decimal_places=20, null = True)
     latitude=models.DecimalField(max_digits=30, decimal_places=20, null = True)
-    longitude = models.IntegerField(null = True)
-    latitude = models.IntegerField(null = True)
+    
     address=models.CharField(max_length=45, null = True)
     photo=models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, null = True)
     subscribers=models.IntegerField(null = True)
@@ -26,5 +27,4 @@ class Store(models.Model):
     category=models.IntegerField(null = True)
 
     def __str__(self):
-
-        return self.username
+       return self.username
