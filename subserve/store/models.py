@@ -5,12 +5,12 @@ from django.contrib import admin
 # Create your models here.
 class Store(models.Model):
     #user = models.OneToOneField(User, on_delete=models.CASCADE)
-    username = models.CharField(max_length=45, null = True)
+    id=models.AutoField(primary_key=True, default=0)
+    storename = models.CharField(max_length=45, null = True)
     longitude=models.DecimalField(max_digits=30, decimal_places=20, null = True)
     latitude=models.DecimalField(max_digits=30, decimal_places=20, null = True)
-    
     address=models.CharField(max_length=45, null = True)
-    photo=models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, null = True)
+    photo=models.ImageField(upload_to="", height_field=None, width_field=None, default='')
     subscribers=models.IntegerField(null = True)
     rank=models.IntegerField(null = True)
     is_premium=models.BooleanField(null = True)
@@ -27,4 +27,4 @@ class Store(models.Model):
     category=models.IntegerField(null = True)
 
     def __str__(self):
-       return self.username
+       return self.storename

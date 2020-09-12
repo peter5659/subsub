@@ -1,14 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
-'''
-from unixtimestampfield.fields import UnixTimeStampField
+
+import time
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.contrib.auth.hashers import make_password, is_password_usable
 
 # Create your models here.
 class User(models.Model):
-    id=models.IntegerField(primary_key=True)
+    id=models.AutoField(primary_key=True, default=0)
     pw=models.CharField(max_length=45)
     email=models.CharField(max_length=45)  #EmailField 사용?
     phone=models.CharField(max_length=45, null=True)
@@ -34,11 +34,11 @@ def password_hashing(instance, **kwargs):
 
 
 class Store(models.Model):
-    id=models.IntegerField(primary_key=True)
+    id=models.AutoField(primary_key=True, default=0)
     longitude=models.DecimalField(max_digits=30, decimal_places=20)
     latitude=models.DecimalField(max_digits=30, decimal_places=20)
     address=models.CharField(max_length=45)
-    photo=models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    photo=models.ImageField(upload_to="", height_field=None, width_field=None, default='')
     subscribers=models.IntegerField()
     rank=models.IntegerField()
     is_premium=models.BooleanField()
@@ -56,7 +56,7 @@ class Store(models.Model):
 
 
 class Manager(models.Model):
-    manager_id=models.IntegerField(primary_key=True)
+    manager_id=models.AutoField(primary_key=True, default=0)
     id=models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     password=models.CharField(max_length=45)       #hashed
     phone=models.CharField(max_length=45)
@@ -66,10 +66,11 @@ class Manager(models.Model):
 
 class Menu(models.Model):
     store_id=models.ForeignKey(Store, on_delete=models.CASCADE)
-    menu_id=models.IntegerField(primary_key=True)
+    menu_id=models.AutoField(primary_key=True, default=0)
+    menu_name = models.CharField(max_length=20, default='')
     description=models.CharField(max_length=45)
     price=models.IntegerField()
-    photo=models.CharField(max_length=45, null=True)
+    photo=models.ImageField(upload_to="", height_field=None, width_field=None, default='')
     allergic=models.CharField(max_length=45)
     subscribers=models.IntegerField()
     cycle=models.IntegerField()
@@ -79,7 +80,7 @@ class Menu(models.Model):
     in_event=models.BooleanField()
 
 class Reviews(models.Model):
-    review_id=models.IntegerField(primary_key=True)
+    review_id=models.AutoField(primary_key=True, default=0)
     user_id=models.ForeignKey(User, on_delete=models.CASCADE)
     store_id=models.ForeignKey(Store, on_delete=models.CASCADE)
     menu_id=models.ForeignKey(Menu, on_delete=models.CASCADE)
@@ -88,21 +89,21 @@ class Reviews(models.Model):
     rank=models.IntegerField()
 
 class Subscribes(models.Model):
-    id = models.IntegerField(primary_key = True)
+    id = models.AutoField(primary_key = True, default=0)
     user_id=models.ForeignKey(User, on_delete=models.CASCADE)
     store_id=models.ForeignKey(Store, on_delete=models.CASCADE)
     menu_id=models.ForeignKey(Menu, on_delete=models.CASCADE)
-    start_date=UnixTimeStampField(auto_created=True)   #timestamp...
-    end_date=UnixTimeStampField(auto_created=True)
+    start_date=models.DateTimeField(auto_created=True)   #timestamp...
+    end_date=models.DateTimeField(auto_created=True)
     total=models.IntegerField()
     cycle=models.IntegerField()
     remain=models.IntegerField()
-    last_used=UnixTimeStampField(auto_created=True)
-    purchased=UnixTimeStampField(auto_created=True)
+    last_used=models.DateTimeField(auto_created=True)
+    purchased=models.DateTimeField(auto_created=True)
     purchased_type=models.IntegerField()
 
 class QnA(models.Model):
-    article_id=models.IntegerField(primary_key=True)
+    article_id=models.AutoField(primary_key=True, default=0)
     upload_date=models.DateTimeField(auto_now_add=True)
     editted_date=models.DateTimeField(auto_now=True)
     content=models.TextField()
@@ -110,7 +111,7 @@ class QnA(models.Model):
     watched=models.IntegerField()
 
 class Notice(models.Model):
-    article_id=models.IntegerField(primary_key=True)
+    article_id=models.AutoField(primary_key=True, default=0)
     upload_date=models.DateTimeField(auto_now_add=True)
     editted_date=models.DateTimeField(auto_now=True)
     content=models.TextField()
@@ -119,8 +120,7 @@ class Notice(models.Model):
     locality=models.IntegerField()
 
 class Wishlist(models.Model):
-    id=models.IntegerField(Reviews, primary_key = True)
+    id=models.AutoField(primary_key = True, default=0)
     store_id=models.ForeignKey(Store, on_delete=models.CASCADE)
     menu_id=models.ForeignKey(Menu, on_delete=models.CASCADE)
-    
-'''
+
