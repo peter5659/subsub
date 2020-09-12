@@ -3,32 +3,12 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Customer
 from django.http import HttpResponse
+from django.http import JsonResponse
+import json
 # Create your views here.
 def signUp(request) :
-    if request.method=="POST":
-        if request.POST['password']==request.POST['passwordCheck']:
+    return render(request, 'signup.html')
 
-            try:
-                user = User.objects.get(username = request.POST['username'])
-                return render(request, 'signup.html',{'error':"Username has already been taken"})
-            except User.DoesNotExist:
-                user = User.objects.create_user(username = request.POST['username'], password = request.POST['password'], email = request.POST['email'])
-                name = request.POST['name']
-                if request.POST['sex']=="male":
-                    sex = 1
-                else:
-                    sex = 0
-                address = request.POST['address']
-                birthday = request.POST['birthday']
-                phone = request.POST['phone']
-                customer = Customer(name= name, address = address, birthday = birthday, phone = phone, sex = sex, user= user)
-                customer.save()
-                auth.login(request, user)
-                return HttpResponse("Signned up!!")
-        else:
-            return render(request, 'signup.html', {'error': "Password doesn't match"})
-    else:
-        return render(request, 'signup.html')
 def signIn(request) :
     if request.method=="POST":
         username = request.POST["username"]
@@ -59,3 +39,36 @@ def confirmPassword(request) :
 
 def resign(request) :
     return render(request, 'resign.html')
+
+def signUpAPI(request) :
+    print(request.POST['pwd'])
+    # scenario 1. check every values correct
+    if request.POST.get('pwd')!=request.POST.get('pwdconfirm'):
+        print("wrong password")
+        return JsonResponse({
+            'status' : 'false',
+            'message' : "비밀번호가 서로 다릅니다.",
+        }, status=500)
+
+    try:
+        user = Customer.objects.get(name = request.POST.get('id', ''))
+        print("id already been taken")
+        return JsonResponse({
+            'status' : 'false',
+            'message' : "Id already been taken"
+        }, status=500)
+
+    except Customer.DoesNotExist:
+        user = User.objects.create(username = request.POST.get('id', ''), password = request.POST.get('pwd', ''), email = request.POST.get('email', ''))
+        name = request.POST.get('name', '')
+        if request.POST.get('sex', '')=="male":
+            sex = 1
+        else:
+            sex = 0
+        address = request.POST.get('address', '')
+        birthday = request.POST.get('birthday', '')
+        phone = request.POST.get('phone', '')
+        customer = Customer(name= name, address = address, birthday = birthday, phone = phone, sex = sex)
+        customer.save()
+        auth.login(request, user)
+        return HttpResponse(status=200)

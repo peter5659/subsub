@@ -19,3 +19,6 @@ class Customer(models.Model):
     birthday=models.DateTimeField()
     sex=models.BooleanField(null = True)
     certified=models.BooleanField(null = True)
+
+    def __str__(self) :
+        return str(self.id) + " " + self.name

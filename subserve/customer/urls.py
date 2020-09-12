@@ -10,5 +10,6 @@ urlpatterns = [
     path('editprofile/', views.editProfile, name="editprofile"),
     path('findaccount/', views.findAccount, name="findaccount"),
     path('mypage/', views.myPage, name="mypage"),
-    path('resign/', views.resign, name="resign")
+    path('resign/', views.resign, name="resign"),
+    path('signUpAPI', views.signUpAPI, name="signUpAPI")
 ]
