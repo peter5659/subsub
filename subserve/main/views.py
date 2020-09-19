@@ -1,10 +1,14 @@
 from django.shortcuts import render
 import os
 import json
+from .models import Store
 
 # Create your views here.
 def main(request):
-    return render(request, 'main.html')
+    stores=Store.objects.all()
+    store=Store()
+    store.description = request.POST.get('description')
+    return render(request, 'main.html', {'stores':stores})
 
 def search(request):
     return render(request, 'search.html')
