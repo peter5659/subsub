@@ -1,9 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 # Create your models here.
 class Customer(models.Model):
-    # user = models.OneToOneField(User, on_delete=models.CASCADE)
-    id=models.AutoField(primary_key=True, default=0)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    id=models.AutoField(primary_key=True)
     name=models.CharField(max_length=45, null=True)
     phone=models.CharField(max_length=45, null=True)
     marketing_email=models.BooleanField(null= True)   
@@ -14,7 +17,7 @@ class Customer(models.Model):
     locality=models.IntegerField(null = True)
     recent_search_keywords=models.CharField(max_length=45, null=True)
     recent_viewed=models.CharField(max_length=45, null=True)
-    profile=models.CharField(max_length=45, null = True)
+    profile=models.ImageField(upload_to="", height_field=None, width_field=None, default='')
     address=models.CharField(max_length=45)
     birthday=models.DateTimeField()
     sex=models.BooleanField(null = True)

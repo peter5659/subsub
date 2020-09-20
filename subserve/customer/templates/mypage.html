@@ -20,26 +20,26 @@
     <!-- sidebar 종료 -->
 
     <!-- 회원정보 화면 -->
+    {% if user.is_authenticated %}
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
         <div>
-            <h2>'{{user.name}}'님의 회원 정보 </h2>
+            <h2>{{user.customer.name}}님의 회원 정보 </h2>
             <br>
             <hr>
-            <h3>이름 {{user.name}}</h3>
+            <h3>아이디 {{user.user_name}}</h3>
             <hr>
-            <h3>아이디 {{user.id}}</h3>
+            <h3>성별 {{user.customer.sex}}</h3>
             <hr>
-            <h3>성별 {{user.sex}}</h3>
+            <h3>휴대폰 번호 {{user.customer.phone}}</h3>
             <hr>
-            <h3>휴대폰 번호 {{user.phone}}</h3>
+            <h3>이메일 주소 이거 왜있지 안받는데 가입할때</h3>
             <hr>
-            <h3>이메일 주소 {{user.email}}</h3>
+            <h3>주소 {{user.customer.address}}</h3>
             <hr>
-            <h3>주소 ???</h3>
-            <hr>
-            <h3>생년월일 {{user.birthday}}</h3>
+            <h3>생년월일 {{user.customer.birthday}}</h3>
             <hr>
         </div>
+        {% endif %}
         <div class="">
             <button class="" type="button" ><a href="{% url 'editprofile' %}">회원정보 수정</a>
             <button class="" type="button"> <a href="{% url 'confirmpassword' %}"> 회원 탈퇴</a></button>
