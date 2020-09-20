@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import os
 import json
-from .models import Store
+from store.models import Store
 
 # Create your views here.
 def main(request):
