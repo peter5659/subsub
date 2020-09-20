@@ -5,6 +5,7 @@ from django.contrib import admin
 # Create your models here.
 class Store(models.Model):
     #user = models.OneToOneField(User, on_delete=models.CASCADE)
+    objects = models.Manager()
     id=models.AutoField(primary_key=True, default=0)
     storename = models.CharField(max_length=45, null = True)
     longitude=models.DecimalField(max_digits=30, decimal_places=20, null = True)

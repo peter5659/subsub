@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 
 import time
 from django.db.models.signals import pre_save
@@ -8,6 +8,7 @@ from django.contrib.auth.hashers import make_password, is_password_usable
 
 # Create your models here.
 class User(models.Model):
+    objects = models.Manager()
     id=models.AutoField(primary_key=True, default=0)
     pw=models.CharField(max_length=45)
     email=models.CharField(max_length=45)  #EmailField 사용?

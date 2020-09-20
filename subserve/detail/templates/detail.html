@@ -16,6 +16,8 @@
     <!-- navbar 종료 -->
 
     <!-- 디테일 화면 -->
+    
+       
     <div>
         <div class="top-container grid-2">
             <div>
@@ -26,7 +28,7 @@
             </div>
         </div>
         <div class="introduction-container">
-            <h2>매장 소개</h2>
+            <h2>매장 소개 {{ store.storename }}</h2>
             <div>
                 <ul>
                     <li class="desc-inner">
@@ -47,7 +49,7 @@
             <h2>구독 가능한 메뉴</h2>
             <div class="menu-card">
                 <img src="" alt="menu_photo1">
-                <h3>메뉴 이름</h3>
+                <h3>메뉴 이름 {{ store.menu_name }}</h3>
                 <div>메뉴 설명</div>
                 <p>구독 정보</p>
                 <p>가격</p>
@@ -117,5 +119,6 @@
     <!-- footer -->
     {% include 'footer.html' %}
     <!-- footer 종료 -->
+    
 </body>
 </html>
