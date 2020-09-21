@@ -7,8 +7,10 @@ from store.models import Store
 def main(request):
     stores=Store.objects.all()
     store=Store()
+    store.storename = request.POST.get('storename')
     store.description = request.POST.get('description')
     return render(request, 'main.html', {'stores':stores})
+
 
 def search(request):
     return render(request, 'search.html')
