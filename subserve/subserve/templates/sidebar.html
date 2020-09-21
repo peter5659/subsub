@@ -63,10 +63,39 @@
             let id = el.id;
             document.getElementById('sidebar-span-'+id).classList.toggle('hide');
         }
+        function initSidebar() {
+            var sidebarMenu = document.getElementById('sidebarMenu');
+            var main = document.getElementById('main');
+            main.style.position = 'relative';
+            main.style.left = '0px';
+            sidebarMenu.style.position = 'relative';
+            sidebarMenu.style.left = '0px';
+        }
+
+        // 사이드바 숨기고 열고 숨기고 열고
+        let showSidebar = 1;
+        function sidebar() {
+            let width = sidebarMenu.offsetWidth;
+            if(showSidebar == 0) {
+            // appear
+            main.style.left = parseInt(main.style.left) + width/2 + 'px';
+            sidebarMenu.style.left = parseInt(sidebarMenu.style.left) + width + 'px';
+            } else {
+            //disappear
+            main.style.left = parseInt(main.style.left) + -width/2 + 'px';
+            sidebarMenu.style.left = parseInt(sidebarMenu.style.left) + -width + 'px';
+            }
+            showSidebar = (showSidebar+1)%2;
+        }
+
+        window.onload = initSidebar;
     </script>
     <style>
         .hide {
             display: none;
+        }
+        #sidebarMenu {
+            position: relative;
         }
     </style>
 </nav>
