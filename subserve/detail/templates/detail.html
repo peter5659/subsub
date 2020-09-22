@@ -45,27 +45,15 @@
         <!-- 메뉴들의 상세정보를 담는 컨테이너 -->
         <div class="menu-container">
             <h2>구독 가능한 메뉴</h2>
+            {% for menu in store.menu_set.all %}
             <div class="menu-card">
                 <img src="" alt="menu_photo1">
-                <h3>메뉴 이름 {{ store.menu_name }}</h3>
-                <div>메뉴 설명</div>
+                <h3>메뉴 이름 {{ menu.menu_name }}</h3>
+                <div>메뉴 설명 {{ menu.description }}</div>
                 <p>구독 정보</p>
-                <p>가격</p>
+                <p>가격{{ menu.price }}</p>
             </div>
-            <div class="menu-card">
-                <img src="" alt="menu_photo1">
-                <h3>메뉴 이름</h3>
-                <div>메뉴 설명</div>
-                <p>구독 정보</p>
-                <p>가격</p>
-            </div>
-            <div class="menu-card">
-                <img src="" alt="menu_photo1">
-                <h3>메뉴 이름</h3>
-                <div>메뉴 설명</div>
-                <p>구독 정보</p>
-                <p>가격</p>
-            </div>
+            {% endfor %}
         </div>
 
         <div id="map" style="width:100%;height:350px;"></div>

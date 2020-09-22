@@ -4,7 +4,7 @@ from store.models import Store
 # Create your models here.
 
 class Menu(models.Model):
-    store_id=models.ForeignKey(Store, on_delete=models.CASCADE, related_name='store_id', default =0)
+    store_id=models.ForeignKey(Store, on_delete=models.CASCADE)
     menu_id=models.AutoField(primary_key=True)
     menu_name = models.CharField(max_length=20, default='')
     description=models.CharField(max_length=45)
