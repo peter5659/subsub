@@ -6,10 +6,10 @@ from store.models import Store
 # Create your views here.
 def main(request):
     stores=Store.objects.all()
-    store=Store()
-    store.storename = request.POST.get('storename')
-    store.description = request.POST.get('description')
-    return render(request, 'main.html', {'stores':stores})
+    # store=Store()
+    # store.storename = request.POST.get('storename')
+    # store.description = request.POST.get('description')
+    return render(request, 'main.html', {'stores' : stores} )
 
 
 def search(request):

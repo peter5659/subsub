@@ -16,14 +16,13 @@
     {% include 'navbar.html' %}
     <!-- 상단 내비게이션 바 종료 -->
 
-    <div class="row" id="main">
+    <div class="row">
     <!-- 좌측 사이드바 -->
     <!-- hidden 처리하고 자바스크립트로 메뉴 누르면 나오게 할거임. addclass해서 클래스에 hidden 넣었다뺐다 할거. -->
         {% include 'sidebar.html' %}
         <!-- 좌측 사이드바 종료 -->
 
         <!-- 중앙 카드 그리드 -->
-    
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -75,28 +74,23 @@
             <div class="album py-5 bg-light">
                 <div class="container">
                 <div class="row">
-                  {% for store in stores.all %}
-                  <!-- 여기 for loop 들어가서 카드 만들거임 -->
-                  <div class="col-md-4">
-                      <div class="card mb-4 shadow-sm">
-                          <rect width="100%" height="100%" fill="#55595c">
-                            <img src="{{ store.photo.url }}" alt="" width="100%" height="100%">
-                          </rect>
-                          <!-- </svg> -->
-                          <div class="card-body">
-                            <p class="card-text">
-                            <h5>{{store.storename}}</h5>
-                            {{store.description}}</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toDetailPage('{{forloop.counter}}')">보기</button>
-                                </div>
-                                <small class="text-muted">여기에 인기순위 넣자</small>
+                    <!-- 여기 for loop 들어가서 카드 만들거임 -->
+                    {% for card in "x"|rjust:"10" %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                            <div class="card-body">
+                              <p class="card-text">{{store.description}}store.description들어가야함</p>
+                              <div class="d-flex justify-content-between align-items-center">
+                                  <div class="btn-group">
+                                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toDetailPage('{{forloop.counter}}')">View</button>
+                                  </div>
+                                  <small class="text-muted">9 mins</small>
+                              </div>
                             </div>
-                          </div>
-                      </div>
-                  </div>
-                  {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </main>
@@ -119,7 +113,6 @@
       function loadMoreContents() {
         
       }
-  
     </script>
 </body>
 </html>
