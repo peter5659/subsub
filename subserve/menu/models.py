@@ -2,8 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from store.models import Store
 # Create your models here.
+
 class Menu(models.Model):
-    store_id=models.ForeignKey(Store, on_delete=models.CASCADE)
+    store_id=models.ForeignKey(Store, on_delete=models.CASCADE, related_name='store_id', default =0)
     menu_id=models.AutoField(primary_key=True)
     menu_name = models.CharField(max_length=20, default='')
     description=models.CharField(max_length=45)
@@ -19,3 +20,4 @@ class Menu(models.Model):
 
     def __str__(self) :
         return str(self.store_id) + " -- " + self.menu_name
+      
