@@ -4,3 +4,8 @@ body {
 footer {
     background-color: #a6c2cd;
 }
+
+#main {
+    margin: 5% 10% 10% 5%;
+    color: #A6C2CD;
+}

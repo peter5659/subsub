@@ -21,3 +21,6 @@ def mylocation(request) :
         keys = json.load(f)
     mapKey = keys['kakaomap-api']
     return render(request, 'mylocation.html', {'key' : mapKey})
+
+def login(request) :
+    return render(request, 'login.html')

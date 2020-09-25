@@ -2,13 +2,13 @@
     <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                <span>이주의 섭섭</span>
+                <span class="sidebar-title">이주의 섭섭</span>
                 <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report"></a>
             </h6>
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                <span>구독 list</span>
-                <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report" id="subscribing"
+                <span class="sidebar-title">구독 list</span>
+                <a class="d-flex align-items-center text-muted more-btn" href="#" aria-label="Add a new report" id="subscribing"
                     onclick="openMoreMenu(this)">more</a>
             </h6>
             <div id="sidebar-span-subscribing">
@@ -24,8 +24,8 @@
             </div>
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                <span>wishlist</span>
-                <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report" id="wishlist"
+                <span class="sidebar-title">wishlist</span>
+                <a class="d-flex align-items-center text-muted more-btn" href="#" aria-label="Add a new report" id="wishlist"
                     onclick="openMoreMenu(this)">more</a>
             </h6>
             <div id="sidebar-span-wishlist">
@@ -41,8 +41,8 @@
             </div>
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                <span>카테고리</span>
-                <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report" id="category"
+                <span class="sidebar-title">카테고리</span>
+                <a class="d-flex align-items-center text-muted more-btn" href="#" aria-label="Add a new report" id="category"
                     onclick="openMoreMenu(this)">more</a>
             </h6>
             <div id="sidebar-span-category">
@@ -75,7 +75,7 @@
         // 사이드바 숨기고 열고 숨기고 열고
         let showSidebar = 1;
         function sidebar() {
-            let width = sidebarMenu.offsetWidth;
+            let width = sidebarMenu.offsetWidth + 50;
             if(showSidebar == 0) {
             // appear
             main.style.left = parseInt(main.style.left) + width/2 + 'px';
@@ -96,6 +96,17 @@
         }
         #sidebarMenu {
             position: relative;
+        }
+        .sidebar-title {
+            font-size: larger;
+        }
+        .more-btn {
+            font-size: small;
+        }
+
+        h6 {
+            margin: 0;
+            padding: 0;
         }
     </style>
 </nav>

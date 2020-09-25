@@ -26,30 +26,52 @@
             <h2>{{user.customer.name}}님의 회원 정보 </h2>
             <br>
             <hr>
-            <h3>아이디 {{user.user_name}}</h3>
+            <img src="{{user.customer.profile.url}}" alt="" style="width: 50%; height: 50%;">
             <hr>
-            <h3>성별 {{user.customer.sex}}</h3>
+            <div class="user-info">
+                <h4>아이디 </h4>
+                <h4>{{user.username}}</h4>
+            </div>
             <hr>
-            <h3>휴대폰 번호 {{user.customer.phone}}</h3>
+            <div class="user-info">
+                <h4>성별
+                {% if user.customer.sex %}
+                <h4>남</h4>
+                {% else %}
+                <h4>여</h4>
+                {% endif %}
+            </div>
             <hr>
-            <h3>이메일 주소 이거 왜있지 안받는데 가입할때</h3>
+            <div class="user-info">
+                <h4>휴대폰 번호</h4>
+                <h4>{{user.customer.phone}}</h4>
+            </div>
             <hr>
-            <h3>주소 {{user.customer.address}}</h3>
+            <div class="user-info">
+                <h4>이메일 주소 </h4>
+                <h4>이거 왜있지 안받았는데</h4>
+            </div>
             <hr>
-            <h3>생년월일 {{user.customer.birthday}}</h3>
+            <div class="user-info">
+                <h4>주소</h4>
+                <h4>{{user.customer.address}}</h4>
+            </div>
+            <hr>
+            <div class="user-info">
+                <h4>생년월일</h4>
+                <h4>{{user.customer.birthday|date:'Y년 m월 d일'}}</h4>
+            </div>
             <hr>
         </div>
-        {% endif %}
         <div class="">
             <button class="" type="button" ><a href="{% url 'editprofile' %}">회원정보 수정</a>
             <button class="" type="button"> <a href="{% url 'confirmpassword' %}"> 회원 탈퇴</a></button>
         </div>
+        {% endif %}
     </main>
     </div>
 
    
-
-
     <!-- 회원정보 화면 종료 -->
 
     <!-- footer -->
@@ -57,4 +79,17 @@
     <!-- footer 종료 -->
     
 </body>
+<style>
+    #main {
+        margin: 5% 10% 10% 5%;
+        color: #A6C2CD;
+    }
+    body {
+        background-color: #f9f9f9;
+    }
+    .user-info {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+    }
+</style>
 </html>

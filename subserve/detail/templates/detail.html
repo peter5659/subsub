@@ -16,90 +16,132 @@
     <!-- navbar 종료 -->
 
     <!-- 디테일 화면 -->
-    <div>
-        <div class="top-container grid-2">
+    <div class="row" id="main">
+        {% include 'sidebar.html' %}
+        <main>
+            <div class="top-container grid-3">
+                <!-- 매장 대표 사진 -->
+                <div>
+                    <img src="{{store.photo.url}}" alt="store_representing_pic" width="50%" height="50%" id="thumbnail">
+                    <h2>{{ store.storename }}</h2>
+                </div>
+                <!-- 구독 서비스 관련 내용(요약) -->
+                <div>
+                    <ul>
+                        <li style="width: 100%;" class="service-info"><p>구독 서비스 관련 내용(요약)</p></li>
+                        <li style="width: 100%;" class="service-info"><p>구독 서비스 관련 내용(요약)</p></li>
+                        <li style="width: 100%;" class="service-info"><p>구독 서비스 관련 내용(요약)</p></li>
+                        <li style="width: 100%;" class="service-info"><p>구독 서비스 관련 내용(요약)</p></li>
+                        <li style="width: 100%;" class="service-info"><p>구독 서비스 관련 내용(요약)</p></li>
+                    </ul>
+                </div>
+                <!-- 구독 버튼 -->
+                <div>
+                    <button>구독</button>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="introduction-container">
+                <div class="inner-container">
+                    <h2>매장 소개</h2>
+                    <div>
+                        <ul>
+                            <li class="desc-inner">
+                                <p class="desc-inner-text">매장 관련 내용</p>
+                            </li>
+                            <li class="desc-inner">
+                                <p class="desc-inner-text">휴무일</p>
+                            </li>
+                            <li class="desc-inner">
+                                <p class="desc-inner-text">사장님 말씀 등</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <!-- 메뉴들의 상세정보를 담는 컨테이너 -->
+            <div class="introduction-container">
+                <div class="menu-container inner-container">
+                    <h2>구독 가능한 메뉴</h2>
+                    {% for menu in store.menu_set.all %}
+                    <div class="menu-card grid-3">
+                        <div>
+                            <img src="{{menu.photo.url}}" alt="menu_photo1" class="menu-photo">
+                            <h3>{{ menu.menu_name }}</h3>
+                        </div>
+                        <div>
+                            <p>메뉴 설명 <br> {{menu.description}}</p>
+                            <p>구독 정보 <br> {{menu.count}} 회 / {{menu.cycle}} 주</p>
+                            <p>가격 <br> {{menu.price}}원</p>
+                        </div>
+                        <div>
+                            <button>구독하기</button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <!-- 매장 위치 -->
             <div>
-                <img src="{{store.photo.url}}" alt="store_representing_pic" width="50%" height="50%">
+                <h2>매장 위치</h2>
+                <p>{{store.address}}</p>
+                <div id="map" style="width:100%;height:350px;"></div>
             </div>
-            <div>
-                <button>구독</button>
-            </div>
+
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ key }}&libraries=services"></script>
+            <script>
+                var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                    mapOption = {
+                        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                        level: 2 // 지도의 확대 레벨
+                    };  
+                
+                // 지도를 생성합니다    
+                var map = new kakao.maps.Map(mapContainer, mapOption); 
+                
+                // 주소-좌표 변환 객체를 생성합니다
+                var geocoder = new kakao.maps.services.Geocoder();
+                
+                // 주소로 좌표를 검색합니다
+                geocoder.addressSearch('{{store.address}}', function(result, status) {
+                
+                    // 정상적으로 검색이 완료됐으면 
+                     if (status === kakao.maps.services.Status.OK) {
+                
+                        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                        console.log(coords);
+                
+                        // 결과값으로 받은 위치를 마커로 표시합니다
+                        var marker = new kakao.maps.Marker({
+                            map: map,
+                            position: coords
+                        });
+                
+                        // 인포윈도우로 장소에 대한 설명을 표시합니다
+                        var infowindow = new kakao.maps.InfoWindow({
+                            content: '<div style="width:150px;text-align:center;padding:6px 0;">{{store.storename}}</div>'
+                        });
+                        infowindow.open(map, marker);
+                
+                        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                        map.setCenter(coords);
+                    } 
+                });    
+                </script>
         </div>
-        <div class="introduction-container">
-            <h2>매장 소개 {{ store.storename }}</h2>
-            <div>
-                <ul>
-                    <li class="desc-inner">
-                        <p class="desc-inner-text">매장 관련 내용</p>
-                    </li>
-                    <li class="desc-inner">
-                        <p class="desc-inner-text">휴무일</p>
-                    </li>
-                    <li class="desc-inner">
-                        <p class="desc-inner-text">사장님 말씀 등</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 메뉴들의 상세정보를 담는 컨테이너 -->
-        <div class="menu-container">
-            <h2>구독 가능한 메뉴</h2>
-            {% for menu in store.menu_set.all %}
-            <div class="menu-card">
-                <img src="" alt="menu_photo1">
-                <h3>메뉴 이름 {{ menu.menu_name }}</h3>
-                <div>메뉴 설명 {{ menu.description }}</div>
-                <p>구독 정보</p>
-                <p>가격{{ menu.price }}</p>
-            </div>
-            {% endfor %}
-        </div>
-
-        <div id="map" style="width:100%;height:350px;"></div>
-
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ key }}&libraries=services"></script>
-        <script>
-            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-                mapOption = {
-                    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                    level: 3 // 지도의 확대 레벨
-                };  
-
-            // 지도를 생성합니다    
-            var map = new kakao.maps.Map(mapContainer, mapOption); 
-
-            // 주소-좌표 변환 객체를 생성합니다
-            var geocoder = new kakao.maps.services.Geocoder();
-
-            // 주소로 좌표를 검색합니다
-            geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
-
-                // 정상적으로 검색이 완료됐으면 
-                if (status === kakao.maps.services.Status.OK) {
-
-                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-                    // 결과값으로 받은 위치를 마커로 표시합니다
-                    var marker = new kakao.maps.Marker({
-                        map: map,
-                        position: coords
-                    });
-
-                    // 인포윈도우로 장소에 대한 설명을 표시합니다
-                    var infowindow = new kakao.maps.InfoWindow({
-                        content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-                    });
-                    infowindow.open(map, marker);
-
-                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                    map.setCenter(coords);
-                } 
-            });    
-        </script>
-        </div>
-    </div>
-
+    </main>
     <!-- 디테일 화면 종료 -->
 
     <!-- footer -->
@@ -107,4 +149,48 @@
     <!-- footer 종료 -->
     
 </body>
+<style>
+    #thumbnail {
+        width: 290px;
+        height: 230px;
+    }
+    
+    .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .introduction-container {
+        border: 3px solid #A6C2CD;
+        border-radius: 20px;
+        background-color: white;
+    }
+
+    .inner-container {
+        margin: 30px;
+    }
+
+    #main {
+        margin: 5% 10% 10% 5%;
+        color: #A6C2CD;
+    }
+
+    .desc-inner {
+        width: 100%;
+    }
+
+    body {
+        background-color: #f9f9f9;
+    }
+
+    .menu-photo {
+        width: 230px;
+        height: 200px;
+    }
+
+    .service-info {
+        height: 50%;
+    }
+</style>
+
 </html>
