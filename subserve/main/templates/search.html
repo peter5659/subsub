@@ -16,13 +16,34 @@
 
     <!-- searchbox -->
     <div class="container">
-        <form action="POST">
-            <input type="text" value="# 검색어를 입력하세요.">
-            <img src="" alt="search">
-        </form>
+        <div class="grid-2">
+            <form action="POST" class="grid-3">
+                <div>
+                    <select name="search-type" id="search-type">
+                        <option value="total">통합</option>
+                        <option value="store">식당</option>
+                        <option value="menu">메뉴</option>
+                    </select>
+                </div>
+                <input type="text" value="# 검색어를 입력하세요." id="search-box">
+                <button type="button">검색</button>
+            </form>
+        </div>
     </div>
 
 
     <!-- footer -->
     {% include 'footer.html' %}
 </body>
+
+<style>
+    .grid-3 {
+        display: grid;
+        grid-template-columns: 100px 1fr 100px;
+    }
+    
+    #search-box {
+        border: 5px solid #a6c2cd;
+    }
+
+</style>
