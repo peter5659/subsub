@@ -2,7 +2,7 @@
 
     nav{
       padding : 0px 0px;
-      background-color:#f9f9f9;
+      background-color:white;
       position : sticky;
       top : 0px;
     }
@@ -29,7 +29,7 @@
     }
   
     #navbarNav{
-      background-color:#f9f9f9;
+      background-color:white;
     }
   
     svg{
@@ -68,7 +68,7 @@
       padding : 33px;
     }
   
-    svg:hover .nav-link{
+    .nav-link svg:hover{
       fill : #FF6754;
     }
   
@@ -79,12 +79,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <button id="sidebar-hide-button" onclick="sidebar()">
-              hide
-            </button>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-menu" href="{% url 'main'%}">
+            <a class="nav-link" id="sidebar-hide-button" onclick="sidebar()">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#A6C2CD" width="55px" height="55px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zm0-5h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zM3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1z"/></svg>
             </a>
           </li>
@@ -100,7 +95,7 @@
           </li>
   
           <!-- 이거 중간으로 가서 로고로 바꿔야함 -->
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="{% url 'main'%}">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="551.395" height="112.5" viewBox="0 0 551.395 112.5">
               <defs>
                 <filter id="ub" x="101.38" y="21.5" width="119" height="91" filterUnits="userSpaceOnUse">
