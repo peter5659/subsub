@@ -22,11 +22,20 @@
         margin : 67px 0px;
     }
 
-    .float-right{
-        
-        color : white;
-        margin : 0px;
-        
+    .float-right a{
+      -webkit-transition: all 0.1s linear;
+              transition: all 0.1s linear;
+      color : white;
+      margin : 0px;       
+    }
+
+    .float-right a:hover{
+      -webkit-transform: scale(1.05);
+         -moz-transform: scale(1.05);
+          -ms-transform: scale(1.05);
+           -o-transform: scale(1.05);
+              transform: scale(1.05); 
+      text-decoration: none;
     }
 
     a{
@@ -53,7 +62,7 @@
 
     .footer-sns{
         position : relative;
-        left: 245px;
+        left: 230px;
     }
 
 </style>
@@ -103,7 +112,7 @@
     </p>
     <br>
     <p class="float-right footer-email">
-        <a href="#">@email</a>
+        <a href="#">email</a>
     </p>
     <br>
     <p class="float-right footer-sns">

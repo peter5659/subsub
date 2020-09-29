@@ -15,7 +15,7 @@
     {% include 'navbar.html' %}
 
     <!-- searchbox -->
-    <div class="container">
+    <div class="searchcenter">
         <div class="grid-2">
             <form action="POST" class="grid-3">
                 <div>
@@ -26,7 +26,7 @@
                     </select>
                 </div>
                 <input type="text" value="# 검색어를 입력하세요." id="search-box">
-                <button type="button">검색</button>
+                <button type="button" class="searchbutton">검색</button>
             </form>
         </div>
     </div>
@@ -44,6 +44,22 @@
     
     #search-box {
         border: 5px solid #a6c2cd;
+        
+    }
+    .searchcenter{
+        display: block;
+        margin: 70px auto 500px auto;
+    }
+
+    .searchbutton{
+        color: #A6C2CD;
+        border: #A6C2CD solid 1px;
+        background-color: white;
+    }
+
+    .searchbutton:hover{
+        color: white;
+        background-color: #A6C2CD;
     }
 
 </style>

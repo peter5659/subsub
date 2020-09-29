@@ -15,7 +15,7 @@
     {% include 'navbar.html' %}
 
     <!-- map -->
-    <div id="map" style="width:50%;height:500px;"></div>
+    <div id="map" class="mapcenter" style="width:50%;height:500px;"></div>
 
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ key }}&libraries=services"></script>
     <script>
@@ -83,3 +83,10 @@
     <!-- footer -->
     {% include 'footer.html' %}
 </body>
+
+<style>
+    .mapcenter{
+        display: block;
+        margin: 50px auto;
+    }
+</style>
