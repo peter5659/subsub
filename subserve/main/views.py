@@ -13,7 +13,14 @@ def main(request):
 
 
 def search(request):
-    return render(request, 'search.html')
+    stores=Store.objects.all().order_by('-id')
+    q = request.POST.get('q',"")
+
+    if q:
+        stores=stores.filter(storename__icontains=q)
+        return render(request, 'search.html', {'stores' : stores, 'q' : q})
+    else:
+            return render(request, 'search.html')
 
 def mylocation(request) :
     jsonPath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'subserve/keys.json')
