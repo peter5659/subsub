@@ -16,19 +16,41 @@
 
     <!-- searchbox -->
     <div class="searchcenter">
-        <div class="grid-2">
-            <form action="POST" class="grid-3">
-                <div>
-                    <select name="search-type" id="search-type">
-                        <option value="total">통합</option>
-                        <option value="store">식당</option>
-                        <option value="menu">메뉴</option>
-                    </select>
-                </div>
-                <input type="text" value="# 검색어를 입력하세요." id="search-box">
-                <button type="button" class="searchbutton">검색</button>
-            </form>
+      <div class="grid-2">
+        <form class="grid-3" action="{% url 'search' %}" method="post">
+          {% csrf_token %}
+          <div>
+            <select name="search-type" id="search-type">
+              <option value="total">통합</option>
+              <option value="store">식당</option>
+              <option value="menu">메뉴</option>
+            </select>
+          </div>
+          <input
+            type="text"
+            value="# 검색어를 입력하세요."
+            id="search-box"
+            name="q"
+            value="{{q}}"
+          />
+          <button type="button" class="searchbutton">검색</button>
+        </form>
+      </div>
+      {% block content %} {% if not stores %}
+
+      <h1>검색 결과가 없습니다</h1>
+
+      {% else %} {% for store in stores.all %}
+      <div class="container">
+        <div class="card">
+          <div class="card-body">
+            <h1>{{ store.storename }}</h1>
+            <p>{{ store.description }}<a href=> ...자세히 보기</a></p>
+          </div>
         </div>
+      </div>
+      <br />
+      {% endfor %} {% endif %} {% endblock %}
     </div>
 
 
