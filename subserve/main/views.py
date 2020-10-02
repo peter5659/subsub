@@ -2,6 +2,7 @@ from django.shortcuts import render
 import os
 import json
 from store.models import Store
+from menu.models import Menu
 
 # Create your views here.
 def main(request):
@@ -14,11 +15,17 @@ def main(request):
 
 def search(request):
     stores=Store.objects.all().order_by('-id')
+    menus=Menu.objects.all()
     q = request.POST.get('q',"")
 
     if q:
         stores=stores.filter(storename__icontains=q)
         return render(request, 'search.html', {'stores' : stores, 'q' : q})
+
+    elif q:
+        menus=menus.filter(menu_name__icontains=q)
+        return render(request, 'search.html', {'menus' : menus, 'q' : q})
+
     else:
             return render(request, 'search.html')
 
@@ -28,3 +35,6 @@ def mylocation(request) :
         keys = json.load(f)
     mapKey = keys['kakaomap-api']
     return render(request, 'mylocation.html', {'key' : mapKey})
+
+def login(request) :
+    return render(request, 'login.html')
