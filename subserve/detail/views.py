@@ -20,4 +20,4 @@ def detail(request, storeID) :
 
 def purchasing(request, menu_id, store_id) :
     menuContext = Menu.objects.get(menu_id=menu_id, store_id=store_id)
-    return render(request, 'purchasing.html', {'menu': menuContex} )
+    return render(request, 'purchasing.html', {'menu': menuContext} )

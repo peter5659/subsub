@@ -15,16 +15,164 @@
     {% include 'navbar.html' %}
     <!-- navbar 종료 -->
 
+    <div class="row" id="main">
+        <!-- 좌측 사이드바 -->
+        {% include 'sidebar.html' %}
+        <!-- 좌측 사이드바 종료 -->
 
-    <!-- 결제 화면 -->
-    {{menu}}
+        <!-- 중앙 결제 화면 -->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <div>
+                <h2>결제 페이지</h2>
+                <div class="grid-3">
+                    <div>
+                        <h5>구독 정보</h5>
+                    </div>
+                    <div>
+                        <h5>할인/혜택</h5>
+                    </div>
+                    <div>
+                        <h5>결제금액</h5>
+                    </div>
+                </div>
+                <hr>
+                <div class="grid-3">
+                    <div class="grid-2">
+                        <img src="" alt="">
+                        <p>구독서비스 정보</p>
+                    </div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <hr>
+            <div>
+                <h5>본인인증</h5>
+                <div>휴대폰 인증</div>
+            </div>
+
+            <br>
+            <br>
+            <hr>
+            <div>
+                <h5>배송지 정보</h5>
+                <form action="">
+                <table>
+                    <tr>
+                        <td>이름</td>
+                        <td><input type="text" class="input-text-box"></td>
+                    </tr>
+                    <tr>
+                        <td>휴대폰 번호</td>
+                        <td><input type="text" class="input-text-box"></td>
+                    </tr>
+                    <tr>
+                        <td>이메일 주소</td>
+                        <td><input type="text" class="input-text-box"></td>
+                    </tr>
+                    <tr>
+                        <td>주소</td>
+                        <td><input type="text" class="input-text-box"></td>
+                    </tr>
+                </table>
+                </form>
+
+                <input type="checkbox" name="same-with-userinfo" id="user-same">
+                <label for="user-same">회원정보와 동일</label>
+            </div>
+
+            <br>
+            <br>
+            <hr>
+            
+            <div>
+                <h5>결제수단</h5>
+                <div class="purchase-type-box">
+                    <div class="grid-3">
+                        <button>신용/체크카드</button>
+                        <button>무통장 입금</button>
+                        <button>휴대폰 소액결제</button>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <div id="summary">
+
+            </div>
+
+            <br>
+            <br>
+
+            <div>
+                <h5>약관동의</h5>
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+            <button id="done">결제하기</button>
+            {{menu}}
 
 
-    <!-- 결제 화면 종료 -->
+
+        <!-- 결제 화면 종료 -->
+        </main>
+    </div>
 
     <!-- footer -->
     {% include 'footer.html' %}
     <!-- footer 종료 -->
     
 </body>
+
+<style>
+    #main {
+        color: #a6c2cd;
+    }
+
+    .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+    
+    .purchase-type-box {
+        width: 30%;
+    }
+
+    #summary {
+        background-color: #a6c2cd;
+        width: 100%;
+        height: 250px;
+    }
+
+    .input-text-box {
+        border: 1px solid #a6c2cd;
+        border-radius: 20px;
+    }
+
+    #done {
+        background-color: #E06050;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        width: 150px;
+        height: 50px;
+    }
+
+</style>
+
 </html>
