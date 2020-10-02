@@ -72,7 +72,7 @@
                 </a>
               </div>
             <div class="album py-5">
-                <div class="container">
+              <div class="container">
                 <div class="row">
                     {% for store in stores.all %}
                     <!-- 여기 for loop 들어가서 카드 만들거임 -->
@@ -82,7 +82,7 @@
                               <img src="{{ store.photo.url }}" alt="" width="100%" height="100%">
                             </rect>
                             <!-- </svg> -->
-                            <div class="card-body">
+                            <div class="card-body" style="color: black;">
                               <p class="card-text">
                               <h5>{{store.storename}}</h5>
                               {{store.description}}</p>
@@ -112,7 +112,7 @@
 
       function toDetailPage(idx) {
         let url = "{% url 'detail' 1 %}";
-        window.location.href = url.replace("1", idx);
+        window.location.href = url.replace("1", idx-1);
       }
 
       function loadMoreContents() {
@@ -121,7 +121,7 @@
     </script>
 
     <div>
-      <a class="topbutton" href="{% url 'main' %}">
+      <a class="topbutton" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#A6C2CD" width="100px" height="100px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M11.29 8.71L6.7 13.3c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 10.83l3.88 3.88c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L12.7 8.71c-.38-.39-1.02-.39-1.41 0z"/></svg>
       </a>
     </div>
@@ -133,5 +133,10 @@
     position : fixed;
     bottom: 25px;
     right: 25px;
+  }
+
+  #myCarousel {
+      height: 200px;
+      color: black;
   }
 </style>

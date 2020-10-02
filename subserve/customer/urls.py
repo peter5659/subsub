@@ -11,5 +11,8 @@ urlpatterns = [
     path('findaccount/', views.findAccount, name="findaccount"),
     path('mypage/', views.myPage, name="mypage"),
     path('resign/', views.resign, name="resign"),
-    path('signUpAPI', views.signUpAPI, name="signUpAPI")
+    path('signUpAPI', views.signUpAPI, name="signUpAPI"),
+    path('loginAPI', views.loginAPI, name="loginAPI"),
+    path('logout', views.logout, name="logout"),
+    path('editProfileAPI', views.editProfileAPI, name="editProfileAPI")
 ]

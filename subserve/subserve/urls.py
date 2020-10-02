@@ -11,7 +11,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main.views.main, name="main"),
-    path('login/', main.views.login, name="login"),
     path('search/', main.views.search, name="search"),
     path('mylocation/', main.views.mylocation, name="mylocation"),
     path('customer/', include('customer.urls')),

@@ -18,7 +18,7 @@
     <!-- sidebar -->
     {% include 'sidebar.html' %}
     <!-- sidebar 종료 -->
-
+    
     <!-- 회원정보 화면 -->
     {% if user.is_authenticated %}
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
@@ -64,11 +64,36 @@
             <hr>
         </div>
         <div class="">
-            <button class="" type="button" ><a href="{% url 'editprofile' %}">회원정보 수정</a>
-            <button class="" type="button"> <a href="{% url 'confirmpassword' %}"> 회원 탈퇴</a></button>
+            <button class="" type="button"><a href="{% url 'editprofile' %}">회원정보 수정</a>
+            <button class="" type="button"><a href="{% url 'confirmpassword' %}"> 회원 탈퇴</a></button>
+            <button class="" type="button"><a href="{% url 'logout' %}">로그 아웃</a></button>
         </div>
-        {% endif %}
     </main>
+    {% else %}
+    {% if error %}
+        <h3>{{error}}</h3>
+    {% endif %}
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" id="main">
+        <form action="{% url 'loginAPI' %}" method="POST">
+            {% csrf_token %}
+            <div>
+                <h4>ID</h4>
+                <input type="text" value="아이디를 입력해주세요." name="id" onclick="{this.value = ''}">
+                <br>
+                <h4>Password</h4>
+                <input type="password" name="pw" id="input-password">
+            </div>
+            <div>
+                <button type="submit">로그인</button>
+            </div>
+        </form>
+        <div>
+            <a href="{% url 'signup' %}" style="color: black;">회원가입</a>
+        </div>
+
+    </main>
+    {% endif %}
+
     </div>
 
    
@@ -92,4 +117,8 @@
         grid-template-columns: 200px 1fr;
     }
 </style>
+
+<script>
+    
+</script>
 </html>

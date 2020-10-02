@@ -95,7 +95,7 @@
                 return;
             }
             const csrftoken = Cookies.get('csrftoken');
-            let url = "{% url 'signUpAPI' %}"
+            let url = "{% url 'purchasing' %}"
             $.ajax({
                 url : url,
                 headers : {

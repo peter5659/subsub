@@ -72,3 +72,30 @@ def signUpAPI(request) :
         customer.save()
         auth.login(request, user)
         return HttpResponse(status=200)
+
+
+def loginAPI(request) :
+    print(request.POST)
+    userID = request.POST.get('id')
+    userPW = request.POST.get('pw')
+    user = auth.authenticate(request, username=userID, password = userPW)
+    if user is not None:
+        auth.login(request, user)
+        return redirect('/')
+    else:
+        return render(request, 'mypage.html', {'error' : 'id나 비밀번호를 다시 확인해주세요'})
+    
+
+def logout(request) :
+    print("ASDFASDFA")
+    auth.logout(request)
+    return redirect('/')
+
+
+def editProfileAPI(request) :
+    address = request.POST.get('address')
+    phone = request.POST.get('phone')
+
+    # 유저정보 가져와서 업데이트하는 쿼리
+
+    return render(request, 'mypage.html')

@@ -82,7 +82,7 @@
                             <p>가격 <br> {{menu.price}}원</p>
                         </div>
                         <div>
-                            <button>구독하기</button>
+                        <button id="btn-subscribe"><a href="{% url 'purchasing' store_id=store.id menu_id=menu.menu_id %}"></a></button>
                         </div>
                     </div>
                     {% endfor %}
@@ -192,5 +192,11 @@
         height: 50%;
     }
 </style>
+
+<script>
+    function sendContext(menu_id, store_id) {
+        window.location.href = "{% url 'purchasing' menu_id=menu_id store_id=store_id %}"
+    }
+</script>
 
 </html>
