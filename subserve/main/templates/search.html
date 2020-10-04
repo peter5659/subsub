@@ -36,22 +36,33 @@
           />
           <button type="submit" class="searchbutton">검색</button>
         </form>
+        <br>
+        <br>
+        
       </div>
       {% block content %} {% if not stores %}
 
-      <h1>검색 결과가 없습니다</h1>
+      <br>
+      <br>
+      <br>
+      <br>
 
-      {% else %} {% for store in stores.all %}
-      <div class="container">
-        <div class="card">
-          <div class="card-body">
-            <h1>{{ store.storename }}</h1>
-            <p>{{ store.description }}<a href="{% url 'detail' store.id %}"> ...자세히 보기</a></p>
+
+      <div id="search-result">
+        <h1 style="text-align: center;">검색 결과가 없습니다</h1>
+
+        {% else %} {% for store in stores.all %}
+        <div class="container">
+          <div class="card" style="width: 100%;">
+            <div class="card-body">
+              <h1>{{ store.storename }}</h1>
+              <p>{{ store.description }}<a href="{% url 'detail' store.id %}"> ...자세히 보기</a></p>
+            </div>
           </div>
         </div>
+        <br>
+        {% endfor %} {% endif %} {% endblock %}
       </div>
-      <br />
-      {% endfor %} {% endif %} {% endblock %}
     </div>
 
 
@@ -62,12 +73,17 @@
 <style>
     .grid-3 {
         display: grid;
-        grid-template-columns: 100px 1fr 100px;
+        grid-template-columns: 1fr 5fr 1fr;
+        margin : 0% 30% 0% 30%;
+    }
+
+    #search-result {
+      margin: 0% 20% 0% 20%;
     }
     
     #search-box {
         border: 5px solid #a6c2cd;
-        width: 500px;
+        width: 100%;
         max-width: 100%;
     }
     .searchcenter{
@@ -79,11 +95,17 @@
         color: #A6C2CD;
         border: #A6C2CD solid 1px;
         background-color: white;
+        margin-left: 30%;
     }
 
     .searchbutton:hover{
         color: white;
         background-color: #A6C2CD;
+    }
+
+    .container {
+      margin: 0% 20% 0% 20%;
+      width: 65%;
     }
 
 </style>
