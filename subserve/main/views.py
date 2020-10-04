@@ -1,9 +1,10 @@
+
+
 from django.shortcuts import render
 import os
 import json
 from store.models import Store
 from menu.models import Menu
-
 # Create your views here.
 def main(request):
     stores=Store.objects.all()
@@ -15,17 +16,13 @@ def main(request):
 
 def search(request):
     stores=Store.objects.all().order_by('-id')
-    menus=Menu.objects.all()
+    menus = Menu.objects.all().order_by('-menu_id')
     q = request.POST.get('q',"")
 
     if q:
         stores=stores.filter(storename__icontains=q)
-        return render(request, 'search.html', {'stores' : stores, 'q' : q})
-
-    elif q:
-        menus=menus.filter(menu_name__icontains=q)
-        return render(request, 'search.html', {'menus' : menus, 'q' : q})
-
+        menus= menus.filter(menu_name__icontains=q)
+        return render(request, 'search.html', {'stores' : stores, 'menus' : menus, 'q' : q})
     else:
             return render(request, 'search.html')
 

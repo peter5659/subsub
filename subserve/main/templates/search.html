@@ -36,17 +36,11 @@
           />
           <button type="submit" class="searchbutton">검색</button>
         </form>
-        <br>
-        <br>
-        
       </div>
       {% block content %} {% if not stores %}
 
       <br>
       <br>
-      <br>
-      <br>
-
 
       <div id="search-result">
         <h1 style="text-align: center;">검색 결과가 없습니다</h1>
@@ -60,7 +54,7 @@
             </div>
           </div>
         </div>
-        <br>
+        <br />
         {% endfor %} {% endif %} {% endblock %}
       </div>
     </div>
