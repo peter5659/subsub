@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +29,7 @@
           <input
             type="text"
             placeholder="# 검색어를 입력하세요."
+            autofield
             id="search-box"
             name="q"
             value="{{q}}"
@@ -37,21 +37,35 @@
           <button type="submit" class="searchbutton">검색</button>
         </form>
       </div>
-      {% block content %} {% if not stores %}
+      {% block content %} 
+        {% if not stores %} 
+          {% if not menus %}
 
-      <h1>검색 결과가 없습니다</h1>
-
-      {% else %} {% for store in stores.all %}
-      <div class="container">
-        <div class="card">
-          <div class="card-body">
-            <h1>{{ store.storename }}</h1>
-            <p>{{ store.description }}<a href="{% url 'detail' store.id %}"> ...자세히 보기</a></p>
-          </div>
-        </div>
-      </div>
-      <br />
-      {% endfor %} {% endif %} {% endblock %}
+          <h1>검색 결과가 없습니다</h1>
+          {% else %}
+            {% for menu in menus.all %}
+              <div class="container">
+                <div class="card">
+                  <div class="card-body">
+                    <h1>{{ menu.menu_name }}</h1>
+                    <p>{{ menu.description }}<a href="{% url 'detail' menu.store_id.id %}"> ...자세히 보기</a></p>
+                  </div>
+                </div>
+              </div>
+              <br />
+            {% endfor %}{% endif %}
+        {% else %} 
+          {% for store in stores.all %}
+            <div class="container">
+              <div class="card">
+                <div class="card-body">
+                  <h1>{{ store.storename }}</h1>
+                  <p>{{ store.description }}<a href="{% url 'detail' store.id %}"> ...자세히 보기</a></p>
+                </div>
+              </div>
+            </div>
+            <br />
+      {% endfor %}  {% endif %} {% endblock %}
     </div>
 
 
