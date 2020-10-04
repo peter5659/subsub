@@ -16,7 +16,7 @@
     <!-- navbar 종료 -->
     <div class="row" id="main">
     <!-- sidebar -->
-    {% include 'sidebar.html' %}
+
     <!-- sidebar 종료 -->
     
     <!-- 회원정보 화면 -->
@@ -78,20 +78,22 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" id="main">
         <form action="{% url 'loginAPI' %}" method="POST">
             {% csrf_token %}
-            <div>
+            <div class="sigincenter">
                 <h5>ID</h5>
-                <input type="text" value="아이디를 입력해주세요." name="id" onclick="{this.value = ''}">
+                <input type="text" name="id" onclick="{this.value = ''}" id="input-id">
                 <br>
                 <h5>Password</h5>
                 <input type="password" name="pw" id="input-password">
             </div>
             <div>
-                <button type="submit">로그인</button>
+                <button class="btn" type="submit" style="color: #a6c2cd; font-size: medium;">로그인</button>
+            </div>
+            <div>
+                <button class="btn" type="submit">
+                    <a href="{% url 'signup' %}" style="color: #a6c2cd; font-size: medium;">회원가입</a>
+                </button>
             </div>
         </form>
-        <div>
-            <a href="{% url 'signup' %}" style="color: black;">회원가입</a>
-        </div>
 
     </main>
     {% endif %}
@@ -107,6 +109,15 @@
     
 </body>
 <style>
+    #input-id{
+        border: 5px solid #a6c2cd;
+        border-radius: 50px;
+    }
+    #input-password{
+        border: 5px solid #a6c2cd;
+        border-radius: 50px;
+    }
+
     #main {
         margin: 3% 10% 5% 10%;
         color: #A6C2CD;
@@ -121,10 +132,26 @@
 
     .btn {
         border: 1px solid #a6c2cd;
+        color: #a6c2cd;
         border-radius: 5px;
         background-color: white;
         width: 120px;
         height: 40px;
+        font-size: medium;
+        text-decoration: none;
+    }
+    .btn:hover{
+        color: white;
+        background-color: #A6C2CD;
+    }
+
+    form{
+        padding-left: 30%;
+        padding-bottom: 120px;
+    }
+    a:hover{
+        color: white;
+        font-size: medium;
     }
 </style>
 
