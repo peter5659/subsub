@@ -62,9 +62,12 @@
                 <h5>{{user.customer.birthday|date:'Y년 m월 d일'}}</h5>
             </div>
             <hr>
+            <br>
+            <br>
+            <br>
         </div>
         <div class="">
-            <div style="padding-left: 30%;">
+            <div class="mypagebutton">
             <button class="btn" type="button"><a href="{% url 'editprofile' %}" style="color: #a6c2cd; font-size: medium;">회원정보 수정</a></button>
             <button class="btn" type="button"><a href="{% url 'confirmpassword' %}" style="color: #a6c2cd; font-size: medium;"> 회원 탈퇴</a></button>
             <button class="btn" type="button"><a href="{% url 'logout' %}" style="color: #a6c2cd; font-size: medium;">로그 아웃</a></button>
@@ -78,6 +81,8 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" id="main">
         <form action="{% url 'loginAPI' %}" method="POST">
             {% csrf_token %}
+            <br>
+            <br>
             <div class="sigincenter" style="padding-bottom: 50px;">
                 <h5>ID</h5>
                 <input type="text" name="id" onclick="{this.value = ''}" id="input-id">
@@ -88,10 +93,10 @@
             </div>
             <div class="button-carrier">
                 <div>
-                    <button class="btn" type="submit" style="color: #a6c2cd; font-size: medium;">로그인</button>
+                    <button class="btn2" type="submit" style="color: #a6c2cd; font-size: medium;">로그인</button>
                 </div>
                 <div>
-                    <button class="btn" type="submit">
+                    <button class="btn2" type="submit">
                         <a href="{% url 'signup' %}" style="color: #a6c2cd; font-size: medium;">회원가입</a>
                     </button>
                 </div>
@@ -112,6 +117,14 @@
     
 </body>
 <style>
+    .mypagebutton{
+        display: block;
+        text-align: center; 
+        width: 300px;
+        margin: 0px auto;
+
+    }
+
     #input-id{
         border: 5px solid #a6c2cd;
         border-radius: 50px;
@@ -140,23 +153,43 @@
         background-color: white;
         width: 70%;
         height: 40px;
-        margin-left: 10%;
+        
         font-size: medium;
         text-decoration: none;
         align-items: center;
+        margin-bottom: 10px;
     }
     .btn:hover{
         color: white;
         background-color: #A6C2CD;
     }
 
+    .btn2 {
+        border: 1px solid #a6c2cd;
+        color: #a6c2cd;
+        border-radius: 5px;
+        background-color: white;
+        width: 70%;
+        height: 40px;
+        margin-left: 10%;
+        font-size: medium;
+        text-decoration: none;
+        align-items: center;
+    }
+    .btn2:hover{
+        color: white;
+        background-color: #A6C2CD;
+    }
+    
+
     form{
         padding-left: 30%;
-        padding-bottom: 120px;
+        padding-bottom: 50px;
     }
     a:hover{
         color: white;
         font-size: medium;
+        text-decoration: none;
     }
 
     .button-carrier {
