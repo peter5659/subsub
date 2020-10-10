@@ -32,7 +32,7 @@
         <!-- 좌측 사이드바 종료 -->
 
         <!-- 중앙 카드 그리드 -->
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 maincenter">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                   <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -41,8 +41,8 @@
                 </ol>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"></rect></svg>
-                    <div class="container">
+                    <div class="carouselcss">
+                      <svg class="bd-placeholder-img" width="100%" height="270px" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"></rect></svg>
                       <div class="carousel-caption text-left">
                         <h1>Example headline.</h1>
                         <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
@@ -51,8 +51,8 @@
                     </div>
                   </div>
                   <div class="carousel-item">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"></rect></svg>
-                    <div class="container">
+                    <div class="carouselcss">
+                      <svg class="bd-placeholder-img" width="100%" height="270px" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"></rect></svg>
                       <div class="carousel-caption">
                         <h1>Another example headline.</h1>
                         <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
@@ -61,8 +61,8 @@
                     </div>
                   </div>
                   <div class="carousel-item">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"></rect></svg>
-                    <div class="container">
+                    <div class="carouselcss">
+                      <svg class="bd-placeholder-img" width="100%" height="270px" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"></rect></svg>
                       <div class="carousel-caption text-right">
                         <h1>One more for good measure.</h1>
                         <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
@@ -81,25 +81,25 @@
                 </a>
               </div>
             <div class="album py-5">
-              <div class="container">
+              <div class="">
                 <div class="row">
                     {% for store in stores.all %}
                     <!-- 여기 for loop 들어가서 카드 만들거임 -->
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
                             <rect width="100%" height="100%" fill="#55595c">
-                              <img src="{{ store.photo.url }}" alt="" width="100%" height="100%">
+                              <img src="{{ store.photo.url }}" alt="" width="100%" height="230px">
                             </rect>
                             <!-- </svg> -->
                             <div class="card-body" style="color: black;">
                               <p class="card-text">
                               <h5>{{store.storename}}</h5>
                               {{store.description}}</p>
-                              <div class="d-flex justify-content-between align-items-center">
+                              <div class="d-flex justify-content-between align-items-center textbottom">
                                   <div class="btn-group">
                                   <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toDetailPage('{{forloop.counter}}')">보기</button>
                                   </div>
-                                  <small class="text-muted">여기에 인기순위 넣자</small>
+                                  <small class="text-muted" style="text-align:right">여기에 인기순위 넣자</small>
                               </div>
                             </div>
                         </div>
@@ -144,7 +144,30 @@
   }
 
   #myCarousel {
-      height: 200px;
+      height: 270px;
       color: black;
+  }
+  
+  .card-body{
+    height: 230px;
+    border-bottom-left-radius: 2em;
+    border-bottom-right-radius: 2em;
+    position: relative;
+  }
+
+  .textbottom{
+    position: absolute;
+    bottom: 30px;
+  }
+
+  .ml-sm-auto{
+
+    margin-left: 0px;
+  }
+
+  .text-muted{
+    text-align: right;
+    right: 0px;
+    position: relative;
   }
 </style>

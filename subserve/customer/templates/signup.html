@@ -29,35 +29,35 @@
             <h2 class="">SIGN UP</h2>
     
             {% if error %}
-            <h3>{{error}}</h3>
+            <h5>{{error}}</h5>
             <br>
             <br>
             {% endif %}
             <div class="">
                 <div class="">
                     <hr>
-                    <h3>이름 <input name="name" type="text" id="name"></h3>
+                    <h5>이름 <input name="name" type="text" id="name" class="signupinput"></h5>
                     <hr>
-                    <h3>아이디 <input name="username" type="text" id="id"></h3>
+                    <h5>아이디 <input name="username" type="text" id="id" class="signupinput"></h5>
                     <hr>
-                    <h3>비밀번호 <input name="password" type="password" id="pwd"></h3>
+                    <h5>비밀번호 <input name="password" type="password" id="pwd" class="signupinput"></h5>
                     <hr>
-                    <h3>비밀번호 확인 <input name="passwordCheck" type="password" id="pwdconfirm"></h3>
+                    <h5>비밀번호 확인 <input name="passwordCheck" type="password" id="pwdconfirm" class="signupinput"></h5>
                     <hr>
-                    <h3>성별
+                    <h5>성별
                         <input class="" type="radio" name="sex" value="male">  남자
                         <input class="" type="radio" name="sex" value="female">  여자
-                    </h3>
+                    </h5>
                     <hr>
-                    <h3>이메일 주소 <input name="email" type="text" id="email"></h3>
+                    <h5>이메일 주소 <input name="email" type="text" id="email" class="signupinput"></h5>
                     <hr>
-                    <h3>주소 <input name="address" type="text" id="address"></h3>
+                    <h5>주소 <input name="address" type="text" id="address" class="signupinput"></h5>
                     <hr>
-                    <h3>생년월일 !!YYYY-MM-DD!! <input name="birthday" type="text" placeholder="YYYY-MM-DD" id="birthday"> </h3>
+                    <h5>생년월일 !!YYYY-MM-DD!! <input name="birthday" type="text" placeholder="YYYY-MM-DD" id="birthday" class="signupinput"> </h5>
                     <hr>
-                    <h3>핸드폰번호 <input name="phone" type="text" id="phone"> </h3>
+                    <h5>핸드폰번호 <input name="phone" type="text" id="phone" class="signupinput"> </h5>
                     <hr>
-                    <h3>이용약관  !!이용약관 내용!!</h3>
+                    <h5>이용약관  !!이용약관 내용!!</h5>
                     <input class="" type="checkbox" name="certified" id="admit">  동의합니다
                     <hr>
 
@@ -69,7 +69,8 @@
             </div>
         </div>
         
-</main>
+    </main>
+    </div>
     <!-- 회원가입 화면 종료 -->
 
     <!-- footer -->
@@ -123,6 +124,44 @@
 <style>
     #main {
         margin: 3% 10% 5% 10%;
+    }
+    
+    .join-button {
+        border: 1px solid #a6c2cd;
+        color: #a6c2cd;
+        border-radius: 5px;
+        background-color: white;
+        width: 100px;
+        height: 40px;
+        font-size: medium;
+        text-decoration: none;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .join-button:hover {
+      color: white;
+      background-color: #a6c2cd;
+    }
+
+    h2, h5, hr{
+        color: #a6c2cd;
+    }
+
+    h5{
+        margin: 25px 0px;
+    }
+
+    hr{
+        color: #a6c2cd;
+        border-top: 1px solid #a6c2cd;
+    }
+
+    .signupinput{
+      border: 1px solid #a6c2cd;
+      border-radius: 50px;
+      width: 30%;
+      max-width: 100%;
     }
 </style>
 
