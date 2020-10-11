@@ -34,33 +34,58 @@
             <br>
             {% endif %}
             <div class="">
-                <div class="">
-                    <hr>
-                    <h5>이름 <input name="name" type="text" id="name" class="signupinput"></h5>
-                    <hr>
-                    <h5>아이디 <input name="username" type="text" id="id" class="signupinput"></h5>
-                    <hr>
-                    <h5>비밀번호 <input name="password" type="password" id="pwd" class="signupinput"></h5>
-                    <hr>
-                    <h5>비밀번호 확인 <input name="passwordCheck" type="password" id="pwdconfirm" class="signupinput"></h5>
-                    <hr>
-                    <h5>성별
-                        <input class="" type="radio" name="sex" value="male">  남자
-                        <input class="" type="radio" name="sex" value="female">  여자
-                    </h5>
-                    <hr>
-                    <h5>이메일 주소 <input name="email" type="text" id="email" class="signupinput"></h5>
-                    <hr>
-                    <h5>주소 <input name="address" type="text" id="address" class="signupinput"></h5>
-                    <hr>
-                    <h5>생년월일 !!YYYY-MM-DD!! <input name="birthday" type="text" placeholder="YYYY-MM-DD" id="birthday" class="signupinput"> </h5>
-                    <hr>
-                    <h5>핸드폰번호 <input name="phone" type="text" id="phone" class="signupinput"> </h5>
-                    <hr>
-                    <h5>이용약관  !!이용약관 내용!!</h5>
+                <div>
+                    <table>
+                        <tr class="cell-title">
+                            <td>이름</td>
+                            <td><input type="text" name="name" id="name" class="signupinput"></td>
+                        </tr>
+                        <tr class="cell-title">
+                            <td>아이디</td>
+                            <td><input type="text" name="username" id="id" class="signupinput"></td>
+                        </tr>
+                        <tr class="cell-title">
+                            <td>비밀번호</td>
+                            <td><input name="password" type="password" id="pwd" class="signupinput"></td>
+                        </tr>
+                        <tr class="cell-title">
+                            <td>비밀번호 확인</td>
+                            <td><input name="passwordCheck" type="password" id="pwdconfirm" class="signupinput"></td>
+                        </tr>
+                        <tr class="cell-title">
+                            <td>성별</td>
+                            <td>
+                                <input class="" type="radio" name="sex" value="male">  남
+                                <input class="" type="radio" name="sex" value="female">  여
+                            </td>
+                        </tr>
+                        <tr class="cell-title">
+                            <td>이메일</td>
+                            <td><input name="email" type="text" id="email" class="signupinput"></td>
+                        </tr>
+                        <tr class="cell-title">
+                            <td>주소</td>
+                            <td><input name="address" type="text" id="address" class="signupinput"></td>
+                        </tr>
+                        <tr class="cell-title">
+                            <td>생년월일</td>
+                            <td><input name="birthday" type="text" placeholder="YYYY-MM-DD" id="birthday" class="signupinput"></td>
+                        </tr>
+                        <tr class="cell-title">
+                            <td>휴대폰번호</td>
+                            <td>
+                                <input name="phone" type="text" id="phone" class="signupinput">
+                            </td>
+                        </tr>
+                        <tr class="cell-title">
+                            <td>마케팅 정보 수신동의</td>
+                            <td>
+                                이메일 <input class="" type="radio" name="marketing-email" value="true">
+                                문자메시지 <input class="" type="radio" name="marketing-sms" value="true">
+                            </td>
+                        </tr>
+                    </table>
                     <input class="" type="checkbox" name="certified" id="admit">  동의합니다
-                    <hr>
-
                 </div>
                 <br>
                 <div class="">
@@ -68,7 +93,6 @@
                 </div>
             </div>
         </div>
-        
     </main>
     </div>
     <!-- 회원가입 화면 종료 -->
@@ -88,6 +112,8 @@
             submit['address'] = document.getElementById('address').value;
             submit['birthday'] = document.getElementById('birthday').value;
             submit['phone'] = document.getElementById('phone').value;
+            submit['maketing-email'] = $("input[name='marketing-email']:checked").val();
+            submit['maketing-sms'] = $("input[name='marketing-sms']:checked").val();
 
             console.log(submit);
 
@@ -96,7 +122,7 @@
                 return;
             }
             const csrftoken = Cookies.get('csrftoken');
-            let url = "{% url 'loginAPI' %}"
+            let url = "{% url 'signUpAPI' %}"
             $.ajax({
                 url : url,
                 headers : {
@@ -162,6 +188,23 @@
       border-radius: 50px;
       width: 30%;
       max-width: 100%;
+    }
+
+    table {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    td input {
+        width: 50%;
+    }
+    .cell-title {
+        width: 20%;
+    }
+    tr {
+        width: 100%;
+        height: 50px;
+        border-bottom: 1px solid #a6c2cd;
     }
 </style>
 

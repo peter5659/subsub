@@ -14,6 +14,9 @@ class Subscribes(models.Model):
      total=models.IntegerField()
      cycle=models.IntegerField()
      remain=models.IntegerField()
-     last_used=models.DateTimeField(auto_created=True)
+     last_used=models.DateTimeField(auto_created=True, null=True)
      purchased=models.DateTimeField(auto_created=True)
      purchased_type=models.IntegerField()
+
+     def __str__(self) :
+          return str(self.user_id) + "-" + str(self.store_id) + "-" + str(self.menu_id)

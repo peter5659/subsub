@@ -71,24 +71,24 @@
                 <table>
                     <tr>
                         <td class="cell-title">이름</td>
-                        <td><input type="text" class="input-text-box"></td>
+                        <td><input type="text" class="input-text-box" id="name"></td>
                     </tr>
                     <tr>
                         <td class="cell-title">휴대폰 번호</td>
-                        <td><input type="text" class="input-text-box"></td>
+                        <td><input type="text" class="input-text-box" id="phone"></td>
                     </tr>
                     <tr>
                         <td class="cell-title">이메일 주소</td>
-                        <td><input type="text" class="input-text-box"></td>
+                        <td><input type="text" class="input-text-box" id="email"></td>
                     </tr>
                     <tr>
                         <td class="cell-title">주소</td>
-                        <td><input type="text" class="input-text-box"></td>
+                        <td><input type="text" class="input-text-box" id="address"></td>
                     </tr>
                 </table>
                 </form>
 
-                <input type="checkbox" name="same-with-userinfo" id="user-same">
+                <input type="checkbox" name="same-with-userinfo" id="user-same" onclick="fillInfo()" value="false">
                 <label for="user-same">회원정보와 동일</label>
             </div>
 
@@ -141,6 +141,26 @@
     <!-- footer 종료 -->
     
 </body>
+
+<script>
+    let checkSameInfo = document.getElementById('user-same');
+    function fillInfo() {
+        if(checkSameInfo.value == 'false') {
+            document.getElementById('name').value = "{{user.customer.name}}";
+            document.getElementById('phone').value = "{{user.customer.phone}}";
+            document.getElementById('email').value = "fake@email.com";
+            document.getElementById('address').value = "{{user.customer.address}}";
+            checkSameInfo.value = 'true';
+        } else {
+            document.getElementById('name').value = "";
+            document.getElementById('phone').value = "";
+            document.getElementById('email').value = "";
+            document.getElementById('address').value = "";
+            checkSameInfo.value = 'false';
+        }
+    }
+
+</script>
 
 <style>
     #main {

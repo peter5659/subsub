@@ -60,6 +60,8 @@ def signUpAPI(request) :
 
     except Customer.DoesNotExist:
         user = User.objects.create(username = request.POST.get('id', ''), password = request.POST.get('pwd', ''), email = request.POST.get('email', ''))
+
+        # 유저 생성 및 연결
         name = request.POST.get('name', '')
         if request.POST.get('sex', '')=="male":
             sex = 1
@@ -68,7 +70,19 @@ def signUpAPI(request) :
         address = request.POST.get('address', '')
         birthday = request.POST.get('birthday', '')
         phone = request.POST.get('phone', '')
-        customer = Customer(name= name, address = address, birthday = birthday, phone = phone, sex = sex)
+
+        # 마케팅 정보 수신 동의 내용
+        if request.POST.get('marketing-email', '') == 'true':
+            marketingEmail = 1
+        else :
+            marketingEmail = 0
+        if request.POST.get('marketing-sms', '') == 'true' :
+            marketingSMS = 1
+        else :
+            marketingSMS = 0
+        marketingSMS = request.POST.get('marketing-sms')
+        customer = Customer(name= name, address = address, birthday = birthday, phone = phone, sex = sex, marketing_email = marketingEmail, marketing_sms = marketingSMS)
+        customer.user = user
         customer.save()
         auth.login(request, user)
         return HttpResponse(status=200)

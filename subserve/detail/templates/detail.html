@@ -82,9 +82,11 @@
                             <p>가격 <br> {{menu.price}}원</p>
                         </div>
                         <div>
-                        <button id="btn-subscribe"><a href="{% url 'purchasing' store_id=store.id menu_id=menu.menu_id %}">구독하기</a></button>
+                            <button id="btn-subscribe"><a href="{% url 'purchasing' store_id=store.id menu_id=menu.menu_id %}">구독하기</a></button>
                         </div>
                     </div>
+                    <br>
+                    <br>
                     {% endfor %}
                 </div>
             </div>
