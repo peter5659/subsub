@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'store.apps.StoreConfig',
     'detail.apps.DetailConfig',
     'customer.apps.CustomerConfig',
+    'sublist.apps.SublistConfig',
     'main.apps.MainConfig',
     'django.contrib.admin',
     'django.contrib.auth',
