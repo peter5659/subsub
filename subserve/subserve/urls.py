@@ -14,7 +14,8 @@ urlpatterns = [
     path('search/', main.views.search, name="search"),
     path('mylocation/', main.views.mylocation, name="mylocation"),
     path('customer/', include('customer.urls')),
-    path('store/', include ('detail.urls'))
+    path('store/', include ('detail.urls')),
+    path('loadMoreDataAPI', main.views.loadMoreData, name="loadmoredata")
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -28,9 +28,6 @@ def purchasing(request, menu_id, store_id) :
     return render(request, 'purchasing.html', {'menu': menuContext})
 
 
-# def useMyAvailableMenu(request) :
-#     storeID = request.POST.get('')
-
 def checkAvailable(request) :
     # get data from body
     userID = request.POST.get('userID')
