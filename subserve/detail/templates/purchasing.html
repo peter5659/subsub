@@ -127,7 +127,8 @@
             <br>
 
             <div>
-                <button id="done">결제하기</button>
+                <button id="done"><a href="{% url 'subscribe' store_id=menu.store_id.id menu_id=menu.menu_id %}">결제하기</a></button>
+            
             </div>
 
 
