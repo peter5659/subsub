@@ -3,6 +3,9 @@ import os
 import json
 from store.models import Store
 from menu.models import Menu
+from django.core import serializers
+from django.http import JsonResponse
+
 # Create your views here.
 def main(request):
     stores=Store.objects.all()
@@ -35,4 +38,6 @@ def loadMoreData(request) :
     # scenario 1. get data from request body
     count = request.POST.get('count', 0)
     stores = Store.objects.all()
-    return stores
+    ret = serializers.serialize('json', stores)
+    print(ret)
+    return JsonResponse({'stores' : json.dumps(list(stores))})

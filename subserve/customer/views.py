@@ -59,7 +59,9 @@ def signUpAPI(request) :
         }, status=500)
 
     except Customer.DoesNotExist:
-        user = User.objects.create(username = request.POST.get('id', ''), password = request.POST.get('pwd', ''), email = request.POST.get('email', ''))
+        user = User.objects.create(username = request.POST.get('id', ''), email = request.POST.get('email', ''))
+        user.set_password(request.POST.get('pw', ''))
+        user.save()
 
         # 유저 생성 및 연결
         name = request.POST.get('name', '')

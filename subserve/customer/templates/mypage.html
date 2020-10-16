@@ -26,7 +26,6 @@
             <h2>{{user.customer.name}}님의 회원 정보 </h2>
             <br>
             <hr>
-            <img src="{{user.customer.profile.url}}" alt="" style="width: 50%; height: 50%;">
             <hr>
             <div class="user-info">
                 <h5>아이디 </h5>
@@ -68,9 +67,9 @@
         </div>
         <div class="">
             <div class="mypagebutton">
-            <button class="btn" type="button"><a href="{% url 'editprofile' %}" style="color: #a6c2cd; font-size: medium;">회원정보 수정</a></button>
-            <button class="btn" type="button"><a href="{% url 'confirmpassword' %}" style="color: #a6c2cd; font-size: medium;"> 회원 탈퇴</a></button>
-            <button class="btn" type="button"><a href="{% url 'logout' %}" style="color: #a6c2cd; font-size: medium;">로그 아웃</a></button>
+                <button class="btn" type="button"><a href="{% url 'editprofile' %}" style="color: #a6c2cd; font-size: medium;">회원정보 수정</a></button>
+                <button class="btn" type="button"><a href="{% url 'confirmpassword' %}" style="color: #a6c2cd; font-size: medium;"> 회원 탈퇴</a></button>
+                <button class="btn" type="button"><a href="{% url 'logout' %}" style="color: #a6c2cd; font-size: medium;">로그 아웃</a></button>
             </div>
         </div>
     </main>
@@ -118,11 +117,10 @@
 </body>
 <style>
     .mypagebutton{
-        display: block;
+        display: grid;
         text-align: center; 
         width: 300px;
-        margin: 0px auto;
-
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
     #input-id{
@@ -153,11 +151,9 @@
         background-color: white;
         width: 70%;
         height: 40px;
-        
+        min-width: 130px;        
         font-size: medium;
         text-decoration: none;
-        align-items: center;
-        margin-bottom: 10px;
     }
     .btn:hover{
         color: white;
