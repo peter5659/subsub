@@ -5,7 +5,7 @@ from customer.models import Customer
 from django.contrib.auth.models import User
 
 class Subscribes(models.Model):
-     id = models.AutoField(primary_key = True, default=0)
+     id = models.AutoField(primary_key = True)
      user_id=models.ForeignKey(Customer, on_delete=models.CASCADE)
      store_id=models.ForeignKey(Store, on_delete=models.CASCADE)
      menu_id=models.ForeignKey(Menu, on_delete=models.CASCADE)

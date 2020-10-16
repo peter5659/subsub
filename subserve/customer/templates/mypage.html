@@ -26,7 +26,6 @@
             <h2>{{user.customer.name}}님의 회원 정보 </h2>
             <br>
             <hr>
-            <hr>
             <div class="user-info">
                 <h5>아이디 </h5>
                 <h5>{{user.username}}</h5>
@@ -121,6 +120,14 @@
         text-align: center; 
         width: 300px;
         grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    *:focus {
+        outline: none;
+    }
+
+    input {
+        padding-left : 20px;
     }
 
     #input-id{

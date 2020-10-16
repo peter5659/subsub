@@ -2,15 +2,14 @@
     <div class="menuShop">
 		<ul class="mmenu">
             <li>
-                <a href="" data-category="">이주의 섭섭</a>
+                <a href="{% url 'weekrank' %}" data-category="">이주의 섭섭</a>
             </li>
             <hr>
+            {% if user.is_authenticated %}
 			<li>
 				<a data-menu="submenu" href="#">sub list</a>
-				<ul class="smenu"><li><a href="" data-category="">sub all</a></li>
-					<li><a href="" data-category="">sub1</a></li>
-					<li><a href="" data-category="">sub2</a></li>
-					<li><a href="" data-category="">sub3</a></li>
+				<ul class="smenu" id="sidebar-sublist">
+                    <li><a href="" data-category="">모든 구독목록</a></li>
                 </ul>
             </li>
             <hr>
@@ -25,6 +24,19 @@
                 </ul>
             </li>
             <hr>
+            {% else %}
+            <li>
+				<a data-menu="submenu" href="#">인기 지역</a>
+				<ul class="smenu" id="sidebar-sublist">
+                    <li><a href="" data-category="">잠실</a></li>
+					<li><a href="" data-category="">화전</a></li>
+					<li><a href="" data-category="">행신</a></li>
+					<li><a href="" data-category="">연신내</a></li>
+                </ul>
+            </li>
+            <hr>
+
+            {% endif %}
 			<li>
 				<a data-menu="submenu" href="#">category</a>
 				<ul class="smenu"><li><a href="" data-category="">cate all</a></li>
@@ -98,7 +110,26 @@
         // sideBar.classList.toggle('hidden');
         var isOpen = sideBar.classList.contains('slide-in');
         sideBar.setAttribute('class', isOpen ? 'slide-out' : 'slide-in');
-        
+    }
+
+    window.onload = function() {
+        let url = "{% url 'sidebardata' %}";
+        const csrftoken = Cookies.get('csrftoken');
+        $.ajax({
+            url: url,
+            headers : {'X-CSRFToken' : csrftoken},
+            type: 'post',
+            success : (res) => {
+                res.forEach((subscribes) => {
+                    console.log(subscribes)
+                    $('#sidebar-sublist').append('<li><a href="" data-category="">' + subscribes + '</a></li>')
+                })
+            },
+            error : (err) => {
+                console.log(err);
+                return;
+          }
+        })
     }
 
 </script>
