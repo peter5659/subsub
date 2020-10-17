@@ -49,13 +49,15 @@ def loadMoreData(request) :
 
 def sidebarData(request) :
     # 1. sublist
+    print(request.user)
     userid = request.user.customer.id
     sublist = Subscribes.objects.filter(user_id=userid)[:3]
+    print(sublist)
     ret = []
     for sub in sublist :
         temp = dict()
-        # temp['store_id'] = sub.store_id
-        # temp['menu_id'] = sub.menu_id
+        temp['store_id'] = sub.store_id
+        temp['menu_id'] = sub.menu_id
         temp['name'] = sub.__str__()
         temp['split'] = temp['name'].split(' -- ')
         ret.append(temp['split'][1])
