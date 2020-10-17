@@ -94,7 +94,7 @@ def loginAPI(request) :
     print(request.POST)
     userID = request.POST.get('id')
     userPW = request.POST.get('pw')
-    user = auth.authenticate(request, username=userID, password = userPW)
+    user = auth.authenticate(request, name=userID, password = userPW)
     if user is not None:
         auth.login(request, user)
         return redirect('/')
