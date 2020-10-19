@@ -7,7 +7,7 @@ class Menu(models.Model):
     store_id=models.ForeignKey(Store, on_delete=models.CASCADE)
     menu_id=models.AutoField(primary_key=True)
     menu_name = models.CharField(max_length=20, default='')
-    description=models.CharField(max_length=45)
+    description=models.CharField(max_length=45, default='')
     price=models.IntegerField(null = True)
     photo=models.ImageField(upload_to="", height_field=None, width_field=None, default='')
     allergic=models.CharField(max_length=45, null = True)

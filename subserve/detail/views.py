@@ -1,13 +1,13 @@
 import json
 import os
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from store.models import Store
 from menu.models import Menu
 from django.http import HttpResponse
 from customer.models import Customer
 from sublist.models import Subscribes
 from django.contrib.auth.models import User
-
+from .forms import StoreForm
 
 # Create your views here.
 def detail(request, storeID) :
@@ -22,6 +22,16 @@ def detail(request, storeID) :
     return render(request, 'detail.html', context)
     #return render(request, 'detail.html', {'storeID' : storeID, 'key' : mapKey})
 
+def create(request):
+    if request.method == 'POST':
+        form = StoreForm(request.POST, request.FILES)
+        if form.is_valid():
+            store = form.save(commit=False)
+            store.save()
+            return redirect('/')
+    else:
+        form = StoreForm()
+    return render(request, 'store_form.html', {'form': form})
 
 def purchasing(request, menu_id, store_id) :
     menuContext = Menu.objects.get(menu_id=menu_id, store_id=store_id)

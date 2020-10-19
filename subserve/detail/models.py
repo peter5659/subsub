@@ -14,7 +14,7 @@ class Store(models.Model):
     storename = models.CharField(max_length=45, null = True)
     longitude=models.DecimalField(max_digits=30, decimal_places=20, null = True)
     latitude=models.DecimalField(max_digits=30, decimal_places=20, null = True)
-    address=models.CharField(max_length=45, null = True)
+    address=models.CharField(max_length=45, null = True, default= '주소없음')
     photo=models.ImageField(upload_to="", height_field=None, width_field=None, default='')
     subscribers=models.IntegerField(null = True)
     rank=models.IntegerField(null = True)

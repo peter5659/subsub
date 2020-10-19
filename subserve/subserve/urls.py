@@ -17,7 +17,8 @@ urlpatterns = [
     path('store/', include ('detail.urls')),
     path('loadMoreDataAPI', main.views.loadMoreData, name="loadmoredata"),
     path('sidebarDataAPI', main.views.sidebarData, name="sidebardata"),
-    path('weekrank', main.views.weekrank, name='weekrank')
+    path('weekrank', main.views.weekrank, name='weekrank'),
+    path('menu/', include('menu.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
