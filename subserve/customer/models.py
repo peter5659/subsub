@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from store.models import Store
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -25,3 +26,13 @@ class Customer(models.Model):
 
     def __str__(self) :
         return str(self.id) + " " + self.name
+
+    
+class Administrator(models.Model) :
+    store = models.OneToOneField(Store, on_delete=models.CASCADE, null=True)
+    id=models.AutoField(primary_key=True)
+    name=models.CharField(max_length=45, null=True)
+    phone=models.CharField(max_length=45, null=True)
+
+    def __str__(self) :
+        return str(self.store.storename) + " - " + self.name
