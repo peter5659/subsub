@@ -27,7 +27,8 @@ class Customer(models.Model):
     def __str__(self) :
         return str(self.id) + " " + self.name
 
-    
+
+# 아직 마이그레이션 안함
 class Administrator(models.Model) :
     store = models.OneToOneField(Store, on_delete=models.CASCADE, null=True)
     id=models.AutoField(primary_key=True)
