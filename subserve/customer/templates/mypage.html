@@ -25,56 +25,55 @@
     {% if user.is_authenticated %}
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
         <div>
-            <h2>{{user.customer.name}}님의 회원 정보 </h2>
+            <h2 class="mypage-name">'{{user.customer.name}}' 님의 회원 정보 </h2>
             <br>
             <hr>
             <div class="user-info">
-                <h5>아이디 </h5>
-                <h5>{{user.username}}</h5>
+                <h5 class="userinfo-1">아이디 </h5>
+                <h5 class="userinfo-2">｜  {{user.username}}</h5>
             </div>
             <hr>
             <div class="user-info">
-                <h5>성별
+                <h5 class="userinfo-1">성별
                 {% if user.customer.sex %}
-                <h5>남</h5>
+                <h5 class="userinfo-2">｜  남</h5>
                 {% else %}
-                <h5>여</h5>
+                <h5 class="userinfo-2">｜  여</h5>
                 {% endif %}
             </div>
             <hr>
             <div class="user-info">
-                <h5>휴대폰 번호</h5>
-                <h5>{{user.customer.phone}}</h5>
+                <h5 class="userinfo-1">휴대폰 번호</h5>
+                <h5 class="userinfo-2">｜  {{user.customer.phone}}</h5>
             </div>
             <hr>
             <div class="user-info">
-                <h5>이메일 주소 </h5>
-                <h5>이거 왜있지 안받았는데</h5>
+                <h5 class="userinfo-1">이메일 주소 </h5>
+                <h5 class="userinfo-2">｜  이거 왜있지 안받았는데</h5>
             </div>
             <hr>
             <div class="user-info">
-                <h5>주소</h5>
-                <h5>{{user.customer.address}}</h5>
+                <h5 class="userinfo-1">주소</h5>
+                <h5 class="userinfo-2">｜  {{user.customer.address}}</h5>
             </div>
             <hr>
             <div class="user-info">
-                <h5>생년월일</h5>
-                <h5>{{user.customer.birthday|date:'Y년 m월 d일'}}</h5>
+                <h5 class="userinfo-1">생년월일</h5>
+                <h5 class="userinfo-2">｜  {{user.customer.birthday|date:'Y년 m월 d일'}}</h5>
             </div>
             <hr>
-            <br>
-            <br>
             <div id="sublists">
-                
+                <h5 class="userinfo-1">SUB list</h5>
             </div>
+            <br>
+            <br>
+            
             <br>
         </div>
-        <div class="">
-            <div class="mypagebutton">
-                <button class="btn" type="button"><a href="{% url 'editprofile' %}" style="color: #a6c2cd; font-size: medium;">회원정보 수정</a></button>
-                <button class="btn" type="button"><a href="{% url 'confirmpassword' %}" style="color: #a6c2cd; font-size: medium;"> 회원 탈퇴</a></button>
-                <button class="btn" type="button"><a href="{% url 'logout' %}" style="color: #a6c2cd; font-size: medium;">로그 아웃</a></button>
-            </div>
+        <div class="mypagebutton">
+                <button class="btn1" type="button"><a href="{% url 'editprofile' %}" style="color:#757575; font-size: medium;">회원정보 수정</a></button>
+                <button class="btn1" type="button"><a href="{% url 'confirmpassword' %}" style="color:#757575; font-size: medium;"> 회원 탈퇴</a></button>
+                <button class="btn1" type="button"><a href="{% url 'logout' %}" style="color:#757575; font-size: medium;">로그 아웃</a></button>
         </div>
     </main>
     {% else %}
@@ -152,9 +151,11 @@
     .mypagebutton{
         display: grid;
         text-align: center; 
-        width: 300px;
+        width: 60%;
         grid-template-columns: 1fr 1fr 1fr;
+        margin: 0 auto;
     }
+    
 
     *:focus {
         outline: none;
@@ -204,20 +205,68 @@
         grid-template-columns: 200px 1fr;
     }
 
-    .btn {
-        border: 1px solid #a6c2cd;
-        color: #a6c2cd;
+    .userinfo-1{
+        font-family: 'MapoPeacefull';
+        color: #757575;
+        font-size: 20px;
+        font-weight: 600;
+        margin: 8px 0px;
+    }
+
+    .userinfo-2{
+        font-family: 'MapoPeacefull';
+        color: #757575;
+        font-size: 17px;
+        font-weight: 500;
+        margin: 8px 0px;
+    }
+
+    .btn1 {
+        border: 1.5px solid #757575;
+        color: #757575;
         border-radius: 5px;
         background-color: white;
         width: 70%;
         height: 40px;
-        min-width: 130px;        
+        margin-left: 10%;
+        min-width: 130px;
         font-size: medium;
         text-decoration: none;
+        align-items: center;
+        font-family: 'MapoPeacefull';
+        position:relative;
+        cursor:pointer;
+        transition:800ms ease all;
+        outline:none;
     }
-    .btn:hover{
-        color: white;
-        background-color: #A6C2CD;
+    .btn1:hover{
+        background:#fff;
+        border: none;
+        color : #ED1C24;
+        
+    }
+   
+    .btn1:before, .btn1:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background:#ED1C24;
+    transition:400ms ease all;
+    }
+
+    .btn1:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+    }
+
+    .btn1:hover:before, .btn1:hover:after{
+    width:100%;
+    transition:800ms ease all;
     }
 
     .btn2 {
@@ -285,6 +334,13 @@
 
     input {
         width: 70%;
+    }
+
+    .mypage-name{
+        font-family: 'MapoPeacefull';
+        font-size: 50px;
+        font-weight: 900;
+        color: #757575;
     }
 </style>
 
