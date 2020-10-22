@@ -18,7 +18,8 @@ urlpatterns = [
     path('loadMoreDataAPI', main.views.loadMoreData, name="loadmoredata"),
     path('sidebarDataAPI', main.views.sidebarData, name="sidebardata"),
     path('weekrank', main.views.weekrank, name='weekrank'),
-    path('menu/', include('menu.urls'))
+    path('menu/', include('menu.urls')),
+    path('manager/', main.views.manager, name='manager')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

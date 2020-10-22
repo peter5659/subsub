@@ -13,6 +13,9 @@ def signIn(request) :
     if request.method=="POST":
         username = request.POST["username"]
         password = request.POST["password"]
+        isManager = request.POST["isManager"]
+        # 매니저면 1, 아니면 null
+        print(isManager)
         customer = auth.authenticate(request, username = username, password = password)
         if customer is not None:
             auth.login(request,customer)

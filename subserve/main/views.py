@@ -70,3 +70,6 @@ def sidebarData(request) :
 def weekrank(request) :
     stores = Store.objects.all().order_by('rank')[:10]
     return render(request, 'weekrank.html', {'stores' : stores})
+
+def manager(request) :
+    return render(request, 'manager.html')

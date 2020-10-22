@@ -104,6 +104,11 @@
                     </button>
                 </div>
             </div>
+            <br>
+            <div class="checkbox-container" style="width: 30%; margin-left: 350px;">
+                <input type="checkbox" name="isManager" id="manager" value="1" style="margin-top: 3px;">
+                <label for="manager">저는 사장님입니다.</label>
+            </div>
         </form>
 
     </main>
@@ -230,6 +235,13 @@
 
     input {
         width: 70%;
+    }
+
+    .checkbox-container {
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        font-size: small;
+        vertical-align: middle;
     }
 </style>
 
