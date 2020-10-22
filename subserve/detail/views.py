@@ -8,6 +8,7 @@ from customer.models import Customer
 from sublist.models import Subscribes
 from django.contrib.auth.models import User
 from .forms import StoreForm
+from django.utils import timezone
 
 # Create your views here.
 def detail(request, storeID) :
@@ -44,9 +45,19 @@ def subscribe(request,menu_id, store_id):
 
 def submenu(request,menu_id, store_id):
     menuContext = Menu.objects.get(menu_id=menu_id, store_id=store_id)
-    #user = Customer.objects.get(id=user_id)
-    user= request.user
-    return render(request,'submenu.html',{'menu':menuContext, 'user':user}) 
+    menu=Menu.objects.all()
+    user_id = request.user
+    #store_id = request.menu.store_id.storename
+    #menu_id = request.menu.menu_name
+    start_date = timezone.datetime.now()
+    end_date = timezone.datetime.now()
+    #total = request.menu.count
+    #cycle = request.menu.cycle
+    #remain = request.menu.count
+    last_used = timezone.datetime.now()
+    purchased = timezone.datetime.now()
+    #user= request.user
+    return render(request,'submenu.html',{'menu':menuContext, 'user_id':user_id}) 
 
 def checkAvailable(request) :
     # get data from body
