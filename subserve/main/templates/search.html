@@ -59,7 +59,7 @@
       <br>
       <br>
 
-      <h1 class="nosearch">검색 결과가 없습니다</h1>
+      <h1 class="nosearch">'검색 결과가 없습니다.'</h1>
       {% else %} {% for menu in menus.all %}
       <br>
       <br>
@@ -67,13 +67,11 @@
       <div class="container">
         <div class="card">
           <div class="card-body">
-            <h1>{{ menu.menu_name }}</h1>
-            <p>
-              {{ menu.description }}<a
-                href="{% url 'detail' menu.store_id.id %}"
-              >
-                ...자세히 보기</a
-              >
+            <h1 class="search-main">{{ menu.menu_name }}</h1>
+            <p class="search-detail">
+              {{ menu.description }}
+              <br>
+              <a href="{% url 'detail' menu.store_id.id %}" style="color: #ED1C24; text-decoration: none;">▶ more</a>
             </p>
           </div>
         </div>
@@ -86,11 +84,11 @@
       <div class="container">
         <div class="card">
           <div class="card-body">
-            <h1>{{ store.storename }}</h1>
-            <p>
-              {{ store.description }}<a href="{% url 'detail' store.id %}">
-                ...자세히 보기</a
-              >
+            <h1 class="search-main">{{ store.storename }}</h1>
+            <p class="search-detail">
+              {{ store.description }}
+              <br>
+              <a href="{% url 'detail' store.id %}"  style="color: #ED1C24; text-decoration: none;">▶ more</a>
             </p>
           </div>
         </div>
@@ -104,6 +102,9 @@
   </body>
 
   <style>
+    .card{
+      box-shadow: 3px 3px 1px #757575;
+    }
     .grid-3 {
       display: grid;
       grid-template-columns: 1fr 4fr 1fr;
@@ -115,10 +116,11 @@
     }
 
     #search-box {
-      border: 5px solid #a6c2cd;
-      border-radius: 50px;
+      border: 1px solid #757575;
+      border-radius: 5px;
       width: 100%;
       max-width: 100%;
+      font-family: 'MapoPeacefull';
     }
     .searchcenter {
       display: block;
@@ -126,16 +128,49 @@
     }
 
     .searchbutton {
-      color: #a6c2cd;
-      border: #a6c2cd solid 1px;
-      border-radius: 5px;
-      background-color: white;
-      margin-left: 30%;
+        border: 1.5px solid #757575;
+        color: #757575;
+        border-radius: 5px;
+        background-color: white;
+        width: 100px;
+        
+        font-size: medium;
+        text-decoration: none;
+        align-items: center;
+        font-family: 'MapoPeacefull';
+        position:relative;
+        cursor:pointer;
+        transition:800ms ease all;
+        outline:none;
+        margin-left: 30%;
+    }
+    .searchbutton:hover{
+        background:#fff;
+        border: none;
+        color : #ED1C24;
+    }
+   
+    .searchbutton:before, .searchbutton:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background:#ED1C24;
+    transition:400ms ease all;
     }
 
-    .searchbutton:hover {
-      color: white;
-      background-color: #a6c2cd;
+    .searchbutton:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+    }
+
+    .searchbutton:hover:before, .searchbutton:hover:after{
+    width:100%;
+    transition:800ms ease all;
     }
 
     .container {
@@ -145,24 +180,48 @@
 
     .nosearch{
       text-align: center;
+      color: #757575;
+      font-family: 'MapoPeacefull';
+      font-size: 30px;
+      font-weight: 700;
+
     }
 
     .search-select {
-      margin-right: 30%;
+      
       width:90px;
       padding:10px;
-      font-size:14px;
-      border:1px solid #a6c2cd;
+      font-size: 17px;
+      font-weight: 700;
+      font-family: 'MapoPeacefull';
+      border:1px solid #757575;
       border-radius: 5px;
-      background: url('subserve\static\admin\img\arrow_drop_down-black-48dp.svg') right center no-repeat;
       background-color:#fff;
       appearance:none;
       -webkit-appearance:none;
       -moz-appearance:none;
       -o-appearance:none;
+      color: #757575;
+      text-align: center;
+      margin: 0 auto;
     }
     .search-select select::-ms-expand {
       display:none;
+    }
+
+    .search-main{
+      font-family: 'MapoPeacefull';
+      font-size: 30px;
+      font-weight: 700;
+      color: #757575;
+    }
+
+    .search-detail{
+      font-family: 'MapoPeacefull';
+      font-size: 15px;
+      color: #757575;
+      margin-top: 20px;
+      margin-bottom: 0px;
     }
   </style>
 </html>
