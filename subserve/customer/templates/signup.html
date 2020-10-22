@@ -37,55 +37,73 @@
                 <div>
                     <table>
                         <tr class="cell-title">
-                            <td>이름</td>
+                            <td class="signup-title">이름</td>
                             <td><input type="text" name="name" id="name" class="signupinput"></td>
                         </tr>
                         <tr class="cell-title">
-                            <td>아이디</td>
+                            <td class="signup-title">아이디</td>
                             <td><input type="text" name="username" id="id" class="signupinput"></td>
                         </tr>
                         <tr class="cell-title">
-                            <td>비밀번호</td>
+                            <td class="signup-title">비밀번호</td>
                             <td><input name="password" type="password" id="pwd" class="signupinput"></td>
                         </tr>
                         <tr class="cell-title">
-                            <td>비밀번호 확인</td>
+                            <td class="signup-title">비밀번호 확인</td>
                             <td><input name="passwordCheck" type="password" id="pwdconfirm" class="signupinput"></td>
                         </tr>
                         <tr class="cell-title">
-                            <td>성별</td>
-                            <td>
-                                <input class="" type="radio" name="sex" value="male">  남
-                                <input class="" type="radio" name="sex" value="female">  여
+                            <td class="signup-title">성별</td>
+                            <td class="signup-option">
+                                <input class="" type="radio" name="sex" value="male">남
+                                <input class="" type="radio" name="sex" value="female">여
                             </td>
                         </tr>
                         <tr class="cell-title">
-                            <td>이메일</td>
+                            <td class="signup-title">이메일</td>
                             <td><input name="email" type="text" id="email" class="signupinput"></td>
                         </tr>
                         <tr class="cell-title">
-                            <td>주소</td>
+                            <td class="signup-title">주소</td>
                             <td><input name="address" type="text" id="address" class="signupinput"></td>
                         </tr>
                         <tr class="cell-title">
-                            <td>생년월일</td>
+                            <td class="signup-title">생년월일</td>
                             <td><input name="birthday" type="text" placeholder="YYYY-MM-DD" id="birthday" class="signupinput"></td>
                         </tr>
                         <tr class="cell-title">
-                            <td>휴대폰번호</td>
+                            <td class="signup-title">휴대폰번호</td>
                             <td>
                                 <input name="phone" type="text" id="phone" class="signupinput">
                             </td>
                         </tr>
                         <tr class="cell-title">
-                            <td>마케팅 정보 수신동의</td>
-                            <td>
-                                이메일 <input class="" type="radio" name="marketing-email" value="true">
-                                문자메시지 <input class="" type="radio" name="marketing-sms" value="true">
+                            <td class="signup-title">마케팅 정보 수신동의</td>
+                            <td class="signup-option">
+                                <input class="signup-box2" type="radio" name="marketing-email" value="true">이메일
+                                <input class="signup-box2" type="radio" name="marketing-sms" value="true"> SMS
                             </td>
                         </tr>
                     </table>
-                    <input class="" type="checkbox" name="certified" id="admit">  동의합니다
+                    <div>
+                        <p class="signup-title">개인정보 수집에 대한 동의</p>
+                        <div class="signup-promise">
+                            <p class="p2">섭섭이 취급하는 모든 개인정보는 관련 법령에 근거하거나 정보주체의 동의에 의하여 수집ㆍ보유 및 처리되고 있습니다.
+                                <br>
+                                섭섭은 법령의 규정에 따라 수집ㆍ보유 및 처리하는 개인정보를 업무의 적절한 수행과 정보주체의 권익을 보호하기 위하여 적법하고 적정하게 취급할 것입니다.
+                                <br>
+                                섭섭의 개인정보 처리방침은 「개인정보보호법」에 근거를 두고 있으며 정보통신서비스제공자가 준수하여야 할 관련 법령상의 개인정보보호 규정을 준수하며, 관련 법령에 의거한 개인정보 처리방침을 정하여 이용자 권익 보호에 최선을 다하고 있습니다.
+                                <br>
+                                섭섭은 귀하께서 섭섭의 개인정보보호방침 또는 이용약관의 내용에 대해 「동의합니다」버튼을 클릭하면 개인정보 수집에 대해 동의한 것으로 봅니다.
+                                </p>
+                        </div>
+                        
+                    </div>
+                    <br>
+                    <div class="signup-option">
+                        <input class="signup-box" type="checkbox" name="certified" id="admit">  동의합니다
+                    </div>
+                    
                 </div>
                 <br>
                 <div class="">
@@ -118,7 +136,7 @@
             console.log(submit);
 
             if($("input:checkbox[name='certified']").is(":checked") == false) {
-                alert("동의해라");
+                alert("이용약관에 동의해주시기 바랍니다.");
                 return;
             }
             const csrftoken = Cookies.get('csrftoken');
@@ -151,23 +169,57 @@
     #main {
         margin: 3% 10% 5% 10%;
     }
-    
-    .join-button {
-        border: 1px solid #a6c2cd;
-        color: #a6c2cd;
-        border-radius: 5px;
-        background-color: white;
-        width: 100px;
-        height: 40px;
-        font-size: medium;
-        text-decoration: none;
-        align-items: center;
-        margin-bottom: 10px;
-    }
 
     .join-button:hover {
       color: white;
       background-color: #a6c2cd;
+    }
+
+    .join-button {
+        border: 1.5px solid #757575;
+        color: #757575;
+        border-radius: 5px;
+        background-color: white;
+        width: 20%;
+        height: 40px;
+        font-size: medium;
+        text-decoration: none;
+        align-items: center;
+        font-family: 'MapoPeacefull';
+        position:relative;
+        cursor:pointer;
+        transition:800ms ease all;
+        outline:none;
+        margin: 0 auto;
+    }
+    .join-button:hover{
+        background:#fff;
+        border: none;
+        color : #ED1C24;
+        
+    }
+   
+    .join-button:before, .join-button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background:#ED1C24;
+    transition:400ms ease all;
+    }
+
+    .join-button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+    }
+
+    .join-button:hover:before, .join-button:hover:after{
+    width:100%;
+    transition:800ms ease all;
     }
 
     .signupup{
@@ -181,16 +233,18 @@
         margin: 25px 0px;
     }
 
-    hr{
-        color: #a6c2cd;
-        border-top: 1px solid #a6c2cd;
-    }
-
     .signupinput{
-      border: 1px solid #a6c2cd;
-      border-radius: 50px;
-      width: 30%;
+      border: 1px solid #ACACAC;
+      border-radius: 5px;
+      width: 50%;
       max-width: 100%;
+      font-family: 'MapoPeacefull';
+      font-size: 15px;
+    }
+    .signup-promise{
+        border: 1px solid #ACACAC;
+        border-radius: 5px;
+        max-width: 100%;
     }
 
     table {
@@ -200,15 +254,37 @@
 
     td input {
         width: 50%;
+        font-family: 'MapoPeacefull';
     }
-    .cell-title {
-        width: 20%;
+    .signup-title {
+        width: 30%;
+        font-family: 'MapoPeacefull';
+        font-weight: 400;
+        font-size: 19px;
+        color: #757575;
     }
     tr {
         width: 100%;
-        height: 50px;
-        border-bottom: 1px solid #a6c2cd;
+        height: 60px;
+        border-bottom: 1px solid  #ACACAC;
+        
     }
+    .p2{
+        font-family: 'MapoPeacefull';
+        font-size: 15px;
+        font-weight: lighter;
+        color:  #ACACAC;
+    }
+    .signup-option{
+        font-family: 'MapoPeacefull';
+        font-size: 17px;
+        color: #757575;
+    }
+    .signup-box{
+        margin-left: 85%;
+    }
+
+    
 </style>
 
 </html>
