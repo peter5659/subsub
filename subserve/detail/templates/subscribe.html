@@ -1,4 +1,5 @@
 결제를 진행해주세요...
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,8 @@
         var IMP = window.IMP; // 생략가능
         IMP.init(''); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
         var msg;
-        
+        var menu_id = '{{menu.menu_id}}';
+        var store_id = '{{menu.store_id.id}}';
         IMP.request_pay({
             pg : 'inicis',
             pay_method : 'card',
@@ -60,7 +62,7 @@
                 msg += '\n카드 승인번호 : ' + rsp.apply_num;
                         
                 alert(msg);
-                location.href = '/';
+                location.href = '/store/submenu/'+menu_id+'/'+store_id+'/';
                 //location.href='<%=request.getContextPath()%>/order/paySuccess?msg='+msg;
             } else {
                 msg = '결제에 실패하였습니다.';

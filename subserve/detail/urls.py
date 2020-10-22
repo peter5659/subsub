@@ -7,5 +7,6 @@ urlpatterns = [
     path('purchasing/<int:menu_id>/<int:store_id>/', views.purchasing, name="purchasing"),
     path('test/', views.checkAvailable, name='test'),
     path('subscribe/<int:menu_id>/<int:store_id>/', views.subscribe, name="subscribe"),
-    path('create', views.create, name = 'create')
+    path('create', views.create, name = 'create'),
+    path('submenu/<int:menu_id>/<int:store_id>/',views.submenu, name= 'submenu')
 ]

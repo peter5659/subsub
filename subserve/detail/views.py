@@ -39,8 +39,14 @@ def purchasing(request, menu_id, store_id) :
 
 def subscribe(request,menu_id, store_id):
     menuContext = Menu.objects.get(menu_id=menu_id, store_id=store_id)
-    return render(request, 'subscribe.html', {'menu': menuContext})
+    user = request.POST.get('user')
+    return render(request, 'subscribe.html', {'menu': menuContext,'user':user})
 
+def submenu(request,menu_id, store_id):
+    menuContext = Menu.objects.get(menu_id=menu_id, store_id=store_id)
+    #user = Customer.objects.get(id=user_id)
+    user= request.user
+    return render(request,'submenu.html',{'menu':menuContext, 'user':user}) 
 
 def checkAvailable(request) :
     # get data from body
