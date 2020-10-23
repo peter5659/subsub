@@ -62,8 +62,12 @@
                 <h5 class="userinfo-2">｜  {{user.customer.birthday|date:'Y년 m월 d일'}}</h5>
             </div>
             <hr>
-            <div id="sublists">
+            <div>
                 <h5 class="userinfo-1">SUB list</h5>
+                <table id="sublists">
+                    <th>메뉴이름</th>
+                    <th>구독종료일자</th>
+                </table>
             </div>
             <br>
             <br>
@@ -134,8 +138,8 @@
             type: 'post',
             success : (res) => {
                 res.forEach((subscribes) => {
-                    console.log(subscribes)
-                    $('#sublists').append('<li><a href="" data-category="">' + subscribes + '</a></li>')
+                    console.log(subscribes);
+                    $('#sublists').append('<tr><td><a href="" data-category="" class="sub-list">' + subscribes[0] + '</a></td> <td>' + (subscribes[1].split(' '))[0] + '</td><tr>')
                 })
             },
             error : (err) => {
@@ -346,6 +350,33 @@
         font-size: 50px;
         font-weight: 900;
         color: #757575;
+    }
+
+    .sub-list {
+        color: black;
+    }
+
+    table {
+        border: 1px solid #757575;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        color: #757575;
+    }
+
+    tr {
+        color: #757575;
+        
+    }
+    
+    td {
+        height: 60px;
+        border: 1px solid #757575;
+        color: #757575;
+    }
+
+    th {
+        border: 1px solid #757575;
     }
 </style>
 
