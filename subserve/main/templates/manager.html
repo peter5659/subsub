@@ -28,15 +28,59 @@
     {% include 'navbar.html' %}
     <!-- 상단 내비게이션 바 종료 -->
 
-    <div class="row" id="main">
-    <!-- 좌측 사이드바 -->
-    <!-- hidden 처리하고 자바스크립트로 메뉴 누르면 나오게 할거임. addclass해서 클래스에 hidden 넣었다뺐다 할거. -->
-        {% include 'sidebar.html' %}
-        <!-- 좌측 사이드바 종료 -->
+    <div class="row" id="main" style="color: #757575;">
+      <div>
+        <img src="{{store.photo.url}}" alt="">
+        <div>
+          <h5>{{store.storename}}</h5>
+          <p>{{store.description}}</p>
+        </div>
+      </div>
 
-        <!-- 중앙 카드 그리드 -->
-        
-        <!-- 중앙 카드 그리드 종료 -->
+      <div>
+        <h5>메뉴</h5>
+        {% for m in menu %}
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <rect width="100%" height="100%" fill="#55595c">
+                  <img src="{{ m.photo.url }}" alt="" width="100%" height="230px">
+                </rect>
+                <!-- </svg> -->
+                <div class="card-body" style="color: black;">
+                  <p class="card-text">
+                  <h5>{{m.menu_name}}</h5>
+                  {{m.price}}</p>
+                  <!-- 구독자수 쓸라했는데 안나옴 -->
+                  <p>{{ countSub.forloop.counter }}명이 구독중입니다.</p>
+                  <div class="d-flex justify-content-between align-items-center textbottom">
+                      <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toDetailPage('{{forloop.counter}}')">보기</button>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div>
+        <h5>잔여횟수 차감</h5>
+        <div>
+          <!-- ajax 통신을 위한 form -->
+          <form action="{% url 'checkAvailableAPI' %}" id="ajax-form", method="POST">
+            <select name="menu" id="menu">
+              {% for m in menu %}
+                <option value="{{ m.id }}">{{ m.menu_name }}</option>
+              {% endfor %}
+            </select>
+            <input type="text" value="유저 아이디를 입력하세요." name="userid">
+            <input type="text" value="차감 횟수를 입력하세요." name="count">
+            <input type="text" value="{{user.manager.store_id}}" name="store", style="display: none;">
+            <button type="submit"> Done </button>
+          </form>
+        </div>
+      </div>
+
     </div>
 
     <!-- 하단 footer -->
@@ -54,8 +98,8 @@
 
       let count = 0;
 
-      window.onscroll = function scroll() {
-        if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      
+      function checkAvailableAPI() {
         let url = "{% url 'loadmoredata' %}";
         const csrftoken = Cookies.get('csrftoken');
         $.ajax({
@@ -83,7 +127,6 @@
           }
         })
       }
-    }
 
 
     </script>

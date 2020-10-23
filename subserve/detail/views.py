@@ -56,9 +56,10 @@ def submenu(request,menu_id, store_id):
 
 def checkAvailable(request) :
     # get data from body
-    userID = request.POST.get('userID')
-    storeID = request.POST.get('storeID')
-    menuID = request.POST.get('menuID')
+    userID = request.POST.get('userid')
+    storeID = request.POST.get('store')
+    menuID = request.POST.get('menu')
+    count = request.POST.get('count')
 
     isUserExist = False
     isSubListExist = False
@@ -76,7 +77,7 @@ def checkAvailable(request) :
 
     # scenario 2. check if sublist is exist
     try:
-        sublist = Subscribes.objects.get(menu_id=menuID, storeID=storeID, user_id=userID)
+        sublist = Subscribes.objects.get(menu_id=menuID, storeID=storeID, userID=userPhone)
         isSubListExist = True
         # scenario 3. substract remaining counts
         if sublist.remain > 0 :

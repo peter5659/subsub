@@ -19,7 +19,8 @@ urlpatterns = [
     path('sidebarDataAPI', main.views.sidebarData, name="sidebardata"),
     path('weekrank', main.views.weekrank, name='weekrank'),
     path('menu/', include('menu.urls')),
-    path('manager/', main.views.manager, name='manager')
+    path('manager/', main.views.manager, name='manager'),
+    path('checkAvailableAPI', detail.views.checkAvailable, name='checkAvailableAPI')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

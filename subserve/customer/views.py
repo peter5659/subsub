@@ -2,6 +2,9 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Customer
+from .models import Manager
+from sublist.models import Subscribes
+from menu.models import Menu
 from django.http import HttpResponse
 from django.http import JsonResponse
 import json
@@ -16,13 +19,23 @@ def signIn(request) :
         isManager = request.POST["isManager"]
         # 매니저면 1, 아니면 null
         print(isManager)
-        customer = auth.authenticate(request, username = username, password = password)
-        if customer is not None:
-            auth.login(request,customer)
-            print(customer.username)
-            return redirect("/")
-        else:
-            return render(request, 'signin.html', {'error': "There is No user"})
+        if len(isManager) != 0 :
+            print("ASDF?ASDF?ADSF?AS?DFA?SD?")
+            customer = auth.authenticate(request, username = username, password = password)
+            if customer is not None:
+                auth.login(request,customer)
+                print(customer.username)
+                return redirect("/")
+            else:
+                return render(request, 'signin.html', {'error': "There is No user"})
+                # Manager 객체랑 대조해서 로그인.
+        else :
+            print("MANAGERMAANAGER")
+            manager = auth.authenticate(request, username=username, password=password)
+            if manager is not None :
+                auth.login(request, manager)
+                print(manager.username)
+                return redirect("/manager")    # 이거말고 매니저용 웹
     else:
         return render(request, 'signin.html')
 
@@ -95,12 +108,27 @@ def signUpAPI(request) :
 
 def loginAPI(request) :
     print(request.POST)
+    print("loginAPI")
     userID = request.POST.get('id')
     userPW = request.POST.get('pw')
+    isManager = request.POST.get('isManager')
+    print(isManager)
+    # 매니저면 1, 아니면 null
     user = auth.authenticate(request, username=userID, password = userPW)
     if user is not None:
         auth.login(request, user)
-        return redirect('/')
+        if isManager != '1' :
+            return redirect('/')
+        else :
+            print("MANAGER")
+            menu = Menu.objects.filter(store_id=user.manager.store)
+
+            subCount = []
+            for m in menu :
+                sublists = Subscribes.objects.filter(menu_id=m.menu_id).count()
+                subCount.append(sublists)
+
+            return render(request, 'manager.html', {'store':user.manager.store, 'menu': menu, 'countSub': subCount})
     else:
         return render(request, 'mypage.html', {'error' : 'id나 비밀번호를 다시 확인해주세요'})
     

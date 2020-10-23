@@ -57,13 +57,13 @@ def password_hashing(instance, **kwargs):
 #     edit = models.IntegerField(default=0)
 
 
-class Manager(models.Model):
-    manager_id=models.AutoField(primary_key=True, default=0)
-    id=models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    password=models.CharField(max_length=45)       #hashed
-    phone=models.CharField(max_length=45)
-    alarm_sms=models.BooleanField()
-    alarm_push=models.BooleanField(null=True)
+# class Manager(models.Model):
+#     manager_id=models.AutoField(primary_key=True, default=0)
+#     id=models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+#     password=models.CharField(max_length=45)       #hashed
+#     phone=models.CharField(max_length=45)
+#     alarm_sms=models.BooleanField()
+#     alarm_push=models.BooleanField(null=True)
 
 
 # class Menu(models.Model):
