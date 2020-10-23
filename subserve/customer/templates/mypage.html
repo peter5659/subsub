@@ -87,20 +87,20 @@
             <br>
             <br>
             <div class="sigincenter" style="padding-bottom: 50px;">
-                <h5>ID</h5>
+                <h4 class="idpassword">ID</h4>
                 <input type="text" name="id" onclick="{this.value = ''}" id="input-id">
                 <br>
                 <br>
-                <h5>Password</h5>
+                <h4 class="idpassword">Password</h4>
                 <input type="password" name="pw" id="input-password">
             </div>
             <div class="button-carrier">
                 <div>
-                    <button class="btn2" type="submit" style="color: #a6c2cd; font-size: medium;">로그인</button>
+                    <button class="btn2" type="submit" style="color:#757575; font-size: medium;">로그인</button>
                 </div>
                 <div>
                     <button class="btn2" type="button">
-                        <a href="{% url 'signup' %}" style="color: #a6c2cd; font-size: medium;">회원가입</a>
+                        <a href="{% url 'signup' %}" style="color: #757575; font-size: medium;">회원가입</a>
                     </button>
                 </div>
             </div>
@@ -147,6 +147,13 @@
     }
 </script>
 <style>
+    .idpassword{
+        color: #ED1C24;
+        font-family: 'MapoPeacefull';
+        font-weight: 900;
+        margin-top: 10px;
+    }
+
     .mypagebutton{
         display: grid;
         text-align: center; 
@@ -163,18 +170,37 @@
     }
 
     #input-id{
-        border: 5px solid #a6c2cd;
-        border-radius: 50px;
+        border-bottom: 2px solid #757575;
+        font-family: 'MapoPeacefull';
+        border-top-color: initial;
+        border-top-style: initial;
+        border-top-width: 0px;
+        border-right-color: initial;
+        border-right-style: initial;
+        border-right-width: 0px;
+        border-left-color: initial;
+        border-left-style: initial;
+        border-left-width: 0px;
     }
+
     #input-password{
-        border: 5px solid #a6c2cd;
-        border-radius: 50px;
+        border-bottom: 2px solid #757575;
+        font-family: 'MapoPeacefull';
+        border-top-color: initial;
+        border-top-style: initial;
+        border-top-width: 0px;
+        border-right-color: initial;
+        border-right-style: initial;
+        border-right-width: 0px;
+        border-left-color: initial;
+        border-left-style: initial;
+        border-left-width: 0px;
     }
 
     #main {
         margin: 3% 10% 5% 10%;
-        color: #A6C2CD;
     }
+
     body {
         background-color: white;
     }
@@ -200,8 +226,8 @@
     }
 
     .btn2 {
-        border: 1px solid #a6c2cd;
-        color: #a6c2cd;
+        border: 1.5px solid #757575;
+        color: #757575;
         border-radius: 5px;
         background-color: white;
         width: 70%;
@@ -210,12 +236,41 @@
         font-size: medium;
         text-decoration: none;
         align-items: center;
+        font-family: 'MapoPeacefull';
+        position:relative;
+        cursor:pointer;
+        transition:800ms ease all;
+        outline:none;
     }
     .btn2:hover{
-        color: white;
-        background-color: #A6C2CD;
+        background:#fff;
+        border: none;
+        color : #ED1C24;
+        
     }
-    
+   
+    .btn2:before, .btn2:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background:#ED1C24;
+    transition:400ms ease all;
+    }
+
+    .btn2:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+    }
+
+    .btn2:hover:before, .btn2:hover:after{
+    width:100%;
+    transition:800ms ease all;
+    }
 
     form{
         padding-left: 30%;
